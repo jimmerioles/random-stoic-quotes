@@ -12,6 +12,8 @@
     "build-dev:css": "npm run autoprefixer-dev && npm run cssnano-dev",
     "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
     "imagemin": "imagemin -p=mozjpeg src/images/*.jpg -o dist/images",
+    "prebuild-dev": "npm run clean",
+    "prebuild-prod": "npm run clean",
     "build-dev": "npm run build-dev:css && npm run imagemin",
     "build-prod": "npm run build-prod:css && npm run imagemin"
   },

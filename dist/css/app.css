@@ -41,8 +41,8 @@ main {
     max-height: 500px;
     -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
             box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(37, 43, 46, 0.9)), to(rgba(67, 73, 76, 0.9))), url('images-raw/captjacksparrow-m.jpg');
-    background-image: linear-gradient(rgba(37, 43, 46, 0.9), rgba(67, 73, 76, 0.9)), url('images-raw/captjacksparrow-m.jpg');
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(37, 43, 46, 0.9)), to(rgba(67, 73, 76, 0.9))), url('../images/captjacksparrow-m.jpg');
+    background-image: linear-gradient(rgba(37, 43, 46, 0.9), rgba(67, 73, 76, 0.9)), url('../images/captjacksparrow-m.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
