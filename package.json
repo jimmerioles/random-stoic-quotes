@@ -10,7 +10,10 @@
     "cssnano-dev": "postcss dist/css/*.css -u cssnano -o dist/css/app.min.css",
     "cssnano-prod": "postcss --map=false dist/css/*.css -u cssnano -o dist/css/app.min.css",
     "build-dev:css": "npm run autoprefixer-dev && npm run cssnano-dev",
-    "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod"
+    "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
+    "imagemin": "imagemin -p=mozjpeg src/images/*.jpg -o dist/images",
+    "build-dev": "npm run build-dev:css && npm run imagemin",
+    "build-prod": "npm run build-prod:css && npm run imagemin"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +21,8 @@
   "devDependencies": {
     "autoprefixer": "^7.1.6",
     "cssnano": "^3.10.0",
+    "imagemin-cli": "^3.0.0",
+    "imagemin-mozjpeg": "^6.0.0",
     "postcss-cli": "^4.1.1"
   }
 }
