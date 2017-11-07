@@ -1,0 +1,103 @@
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    min-width: 360px;
+    background-color: #53595C;
+    font-family: 'Quattrocento Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.95);
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a svg:hover path {
+    fill: #FF6868;
+}
+
+main {
+    width: 80%;
+    height: 80%;
+    margin: auto auto;
+    max-width: 500px;
+    max-height: 500px;
+    -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(37, 43, 46, 0.9)), to(rgba(67, 73, 76, 0.9))), url('images-raw/captjacksparrow-m.jpg');
+    background-image: linear-gradient(rgba(37, 43, 46, 0.9), rgba(67, 73, 76, 0.9)), url('images-raw/captjacksparrow-m.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    text-align: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+main div.top {
+    width: 25px;
+    border-top: 2.5px solid #FF6868;
+}
+
+main div.bottom {
+    width: 25px;
+    border-bottom: 2.5px solid #FF6868;
+}
+
+main blockquote {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    width: 80%;
+}
+
+main blockquote p {
+    font-size: 28px;
+}
+
+main blockquote footer {
+    padding-top: 10px;
+}
+
+footer.credits {
+    position: absolute;
+    bottom: 10px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/*# sourceMappingURL=app.css.map */

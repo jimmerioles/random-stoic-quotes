@@ -4,9 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\""
+    "clean": "rm -f dist/css/* && rm -f dist/js/* && rm -f dist/images/*",
+    "autoprefixer-dev": "postcss src/css/* -u autoprefixer -d dist/css/",
+    "autoprefixer-prod": "postcss --map=false src/css/* -u autoprefixer -d dist/css/",
+    "cssnano-dev": "postcss dist/css/*.css -u cssnano -o dist/css/app.min.css",
+    "cssnano-prod": "postcss --map=false dist/css/*.css -u cssnano -o dist/css/app.min.css",
+    "build-dev:css": "npm run autoprefixer-dev && npm run cssnano-dev",
+    "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "cssnano": "^3.10.0",
+    "postcss-cli": "^4.1.1"
+  }
 }

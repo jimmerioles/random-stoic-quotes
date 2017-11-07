@@ -1,0 +1,32 @@
+[
+    {
+        "quote" : "If you're going through hell, keep going.",
+        "author" : "Winston Churchill",
+        "image-url": "winstonchurchill-m.jpg",
+    },
+    {
+        "quote" : "I've trained myself to fight an army, so one guy will not defeat me.",
+        "author" : "Georges St-Pierre",
+        "image-url": "georgesstpierre-m.jpg",
+    },
+    {
+        "quote" : "The problem is not the problem, the problem is your attitude about the problem.",
+        "author" : "Capt. Jack Sparrow",
+        "image-url": "captjacksparrow-m.jpg",
+    },
+    {
+        "quote" : "I am the master of my fate; The captain of my soul.",
+        "author" : "William Ernest Henley",
+        "image-url": "williamernesthenley-m.jpg",
+    },
+    {
+        "quote" : "Science without religion is lame, religion without science is blind.",
+        "author" : "Albert Einstein",
+        "image-url": "alberteinstein-m.jpg",
+    },
+    {
+        "quote" : "Remember that just because you hit bottom doesn’t mean you have to stay there.",
+        "author" : "Robert Downey Jr.",
+        "image-url": "robertdowneyjr-m.jpg",
+    },
+]
