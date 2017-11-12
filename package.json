@@ -1,8 +1,5 @@
 {
   "name": "random-quotes",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "clean": "rm -f dist/css/* && rm -f dist/js/* && rm -f dist/images/*",
     "autoprefixer-dev": "postcss src/css/* -u autoprefixer -d dist/css/",

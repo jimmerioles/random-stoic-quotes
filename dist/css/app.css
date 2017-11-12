@@ -24,13 +24,21 @@ body {
             align-items: center;
 }
 
+*::-moz-selection {
+    background: rgba(255, 104, 104, 0.4);
+}
+
+*::selection {
+    background: rgba(255, 104, 104, 0.4);
+}
+
 a {
     text-decoration: none;
     color: inherit;
 }
 
 a svg:hover path {
-    fill: #FF6868;
+    fill: rgba(255, 104, 104, 0.5);
 }
 
 main {
