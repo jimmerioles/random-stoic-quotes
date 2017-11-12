@@ -24,11 +24,15 @@ a {
     color: inherit;
 }
 
+a svg path {
+    transition: fill .2s ease-in;
+}
+
 a svg:hover path {
     fill: rgba(255, 104, 104, 0.5);
 }
 
-main {
+.card {
     width: 80%;
     height: 80%;
     margin: auto auto;
@@ -47,31 +51,33 @@ main {
     justify-content: space-between;
 }
 
-main div.top {
+.highlight {
     width: 25px;
+}
+
+.highlight__top{
     border-top: 2.5px solid #FF6868;
 }
 
-main div.bottom {
-    width: 25px;
+.highlight__bottom {
     border-bottom: 2.5px solid #FF6868;
 }
 
-main blockquote {
+.quote {
     display: flex;
     flex-flow: column;
     width: 80%;
 }
 
-main blockquote p {
+.quote__text {
     font-size: 28px;
 }
 
-main blockquote footer {
+.quote__citation {
     padding-top: 10px;
 }
 
-footer.credits {
+.copyright {
     position: absolute;
     bottom: 10px;
     color: rgba(255, 255, 255, 0.75);
