@@ -6,12 +6,14 @@
     "autoprefixer-prod": "postcss --map=false src/css/* -u autoprefixer -d dist/css/",
     "cssnano-dev": "postcss dist/css/*.css -u cssnano -o dist/css/app.min.css",
     "cssnano-prod": "postcss --map=false dist/css/*.css -u cssnano -o dist/css/app.min.css",
-    "build-dev:css": "npm run autoprefixer-dev && npm run cssnano-dev",
-    "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
     "imagemin": "imagemin -p=mozjpeg src/images/*.jpg -o dist/images",
     "prebuild-dev": "npm run clean",
     "prebuild-prod": "npm run clean",
-    "build-dev": "npm run build-dev:css && npm run imagemin",
+    "watch": "webpack --watch",
+    "build-dev:css": "npm run autoprefixer-dev && npm run cssnano-dev",
+    "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
+    "build-dev:js": "webpack",
+    "build-dev": "npm run build-dev:css && npm run build-dev:js && npm run imagemin",
     "build-prod": "npm run build-prod:css && npm run imagemin"
   },
   "keywords": [],
@@ -22,6 +24,7 @@
     "cssnano": "^3.10.0",
     "imagemin-cli": "^3.0.0",
     "imagemin-mozjpeg": "^6.0.0",
-    "postcss-cli": "^4.1.1"
+    "postcss-cli": "^4.1.1",
+    "webpack": "^3.8.1"
   }
 }

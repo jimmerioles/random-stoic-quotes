@@ -6,9 +6,10 @@
 body {
     height: 100vh;
     min-width: 360px;
-    background-color: #53595C;
+    background-color: #2F373A;
     font-family: 'Quattrocento Sans', sans-serif;
     color: rgba(255, 255, 255, 0.95);
+    overflow: hidden;
 
     display: flex;
     justify-content: center;
@@ -39,7 +40,9 @@ a svg:hover path {
     max-width: 500px;
     max-height: 500px;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    background-image: linear-gradient(rgba(37, 43, 46, 0.9), rgba(67, 73, 76, 0.9)), url('../images/captjacksparrow-m.jpg');
+    /*background-image: url('../images/georgesstpierre-m2.jpg');*/
+    background-image: linear-gradient(rgba(43, 49, 52, 0.73), rgba(43, 49, 52, 0.73)), url('../images/georgesstpierre-m.jpg');
+    /*background-image: linear-gradient(rgba(43, 49, 52, 0.73), rgba(43, 49, 52, 0.73)), url('../images/captjacksparrow-m.jpg');*/
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -48,19 +51,11 @@ a svg:hover path {
     flex-flow: column;
     text-align: center;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
-.highlight {
-    width: 25px;
-}
-
-.highlight__top{
-    border-top: 2.5px solid #FF6868;
-}
-
-.highlight__bottom {
-    border-bottom: 2.5px solid #FF6868;
+.svg-quote--hidden {
+    opacity: 0;
 }
 
 .quote {
@@ -77,8 +72,45 @@ a svg:hover path {
     padding-top: 10px;
 }
 
+.quote__text--hidden {
+    opacity: 0;
+}
+
+.quote__citation--hidden {
+    opacity: 0;
+}
+
+.buttons__svg-tweet--hidden {
+    opacity: 0;
+}
+
+.buttons__svg-random--hidden {
+    opacity: 0;
+}
+
 .copyright {
     position: absolute;
     bottom: 10px;
     color: rgba(255, 255, 255, 0.75);
+    transition-duration: 0.6s;
+}
+
+.card--intro {
+    transition: opacity 0.25s ease-in;
+    opacity: 1;
+}
+
+.card--hidden {
+    opacity: 0;
+}
+
+.copyright--intro {
+    transition: transform 0.25s ease-out 0.25s, opacity 0.25s ease-in 0.25s;
+    opacity: 1;
+    transform: none;
+}
+
+.copyright--hidden {
+    transform: translateY(200%);
+    opacity: 0;
 }
