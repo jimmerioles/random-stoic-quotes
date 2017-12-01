@@ -10,7 +10,7 @@
     "prebuild-dev": "npm run clean",
     "prebuild-prod": "npm run clean",
     "watch": "webpack --watch",
-    "build-dev:css": "npm run autoprefixer-dev && npm run cssnano-dev",
+    "build-dev:css": "rm -f dist/css/* && npm run autoprefixer-dev && npm run cssnano-dev",
     "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
     "build-dev:js": "webpack",
     "build-dev": "npm run build-dev:css && npm run build-dev:js && npm run imagemin",

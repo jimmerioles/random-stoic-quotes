@@ -6,7 +6,7 @@
 body {
     height: 100vh;
     min-width: 360px;
-    background-color: #2F373A;
+    background-color: #222222;
     font-family: 'Quattrocento Sans', sans-serif;
     color: rgba(255, 255, 255, 0.95);
     overflow: hidden;
@@ -40,9 +40,7 @@ a svg:hover path {
     max-width: 500px;
     max-height: 500px;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    /*background-image: url('../images/georgesstpierre-m2.jpg');*/
-    /*background-image: linear-gradient(rgba(43, 49, 52, 0.73), rgba(43, 49, 52, 0.73)), url('../images/ge1orgesstpierre-m.jpg');*/
-    background-image: linear-gradient(rgba(43, 49, 52, 0.73), rgba(43, 49, 52, 0.73)), url('../images/captjacksparrow-m.jpg');
+    background-image: linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../images/captjacksparrow-m.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -54,8 +52,8 @@ a svg:hover path {
     justify-content: space-evenly;
 }
 
-.svg-quote--hidden {
-    opacity: 0;
+.svg-quote {
+    transform: translateY(25%);
 }
 
 .quote {
@@ -68,24 +66,21 @@ a svg:hover path {
     font-size: 28px;
 }
 
+.quote__text span {
+    background-color: rgba(255, 104, 104, 0.4);
+    line-height: 3rem;
+    padding: 0.3rem;
+    box-decoration-break: clone;
+}
+
 .quote__citation {
     padding-top: 10px;
 }
 
-.quote__text--hidden {
-    opacity: 0;
-}
-
-.quote__citation--hidden {
-    opacity: 0;
-}
-
-.buttons__svg-tweet--hidden {
-    opacity: 0;
-}
-
-.buttons__svg-random--hidden {
-    opacity: 0;
+.quote__citation span {
+    background-color: rgba(255, 104, 104, 0.4);
+    padding: 0 0.4rem;
+    box-decoration-break: clone;
 }
 
 .copyright {
@@ -93,24 +88,4 @@ a svg:hover path {
     bottom: 10px;
     color: rgba(255, 255, 255, 0.75);
     transition-duration: 0.6s;
-}
-
-.card--intro {
-    transition: opacity 0.25s ease-in;
-    opacity: 1;
-}
-
-.card--hidden {
-    opacity: 0;
-}
-
-.copyright--intro {
-    transition: transform 0.25s ease-out 0.25s, opacity 0.25s ease-in 0.25s;
-    opacity: 1;
-    transform: none;
-}
-
-.copyright--hidden {
-    transform: translateY(200%);
-    opacity: 0;
 }

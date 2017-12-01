@@ -67,21 +67,49 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-start();
+// initialize();
 
-function start() {
-    hideAnimatables();
+function initialize() {
+    prepareAnimatables();
     registerListeners();
 }
 
-function hideAnimatables() {
-    document.getElementById('card').classList.add('card--hidden');
-    // document.getElementById('svg-quote').classList.add('svg-quote--hidden');
-    // document.getElementById('quote__text').classList.add('quote__text--hidden');
-    // document.getElementById('quote__citation').classList.add('quote__citation--hidden');
-    // document.getElementById('buttons__svg-tweet').classList.add('buttons__svg-tweet--hidden');
-    // document.getElementById('buttons__svg-random').classList.add('buttons__svg-random--hidden');
-    document.getElementById('copyright').classList.add('copyright--hidden');
+function prepareAnimatables() {
+    hideCard();
+    hideSvgQuote();
+    hideQuoteText();
+    hideQuoteCitation();
+    hideTweetButton();
+    hideRandomButton();
+    hideCopyright();
+}
+
+function hideCard() {
+    document.getElementById('card').style.opacity = 0;
+}
+
+function hideSvgQuote() {
+    document.getElementById('svg-quote').style.opacity = 0;
+}
+
+function hideQuoteText() {
+    document.getElementById('quote__text').style.opacity = 0;
+}
+
+function hideQuoteCitation() {
+    document.getElementById('quote__citation').style.opacity = 0;
+}
+
+function hideTweetButton() {
+    document.getElementById('buttons__svg-tweet').style.opacity = 0;
+}
+
+function hideRandomButton() {
+    document.getElementById('buttons__svg-random').style.opacity = 0;
+}
+
+function hideCopyright() {
+    document.getElementById('copyright').style.opacity = 0;
 }
 
 function registerListeners() {
@@ -89,20 +117,36 @@ function registerListeners() {
 }
 
 function intro() {
-    cardIntro();
-    copyrightIntro();
+    animateCardIntro();
+    animateCopyrightIntro();
 }
 
-function cardIntro() {
-    let el = document.getElementById('card');
-    el.classList.remove('card--hidden');
-    el.classList.add('card--intro');
+function animateCardIntro() {
+    let cardIntro = [
+        { opacity: 0, easing: 'ease-in' },
+        { opacity: 1 }
+    ];
+
+    let options = {
+        duration: 500,
+        fill: 'forwards'
+    };
+
+    document.getElementById('card').animate(cardIntro, options);
 }
 
-function copyrightIntro() {
-    let el = document.getElementById('copyright');
-    el.classList.remove('copyright--hidden');
-    el.classList.add('copyright--intro');
+function animateCopyrightIntro() {
+    let cardIntro = [
+        { opacity: 0, easing: 'ease-in' },
+        { opacity: 1 }
+    ];
+
+    let options = {
+        duration: 500,
+        fill: 'forwards'
+    };
+
+    document.getElementById('copyright').animate(cardIntro, options);
 }
 
 
