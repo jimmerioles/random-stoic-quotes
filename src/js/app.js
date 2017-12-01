@@ -1,4 +1,6 @@
-// initialize();
+import anime from 'animejs';
+
+initialize();
 
 function initialize() {
     prepareAnimatables();
@@ -48,34 +50,61 @@ function registerListeners() {
 }
 
 function intro() {
-    animateCardIntro();
-    animateCopyrightIntro();
-}
-
-function animateCardIntro() {
-    let cardIntro = [
-        { opacity: 0, easing: 'ease-in' },
-        { opacity: 1 }
-    ];
-
-    let options = {
-        duration: 500,
-        fill: 'forwards'
+    let cardIntro = {
+        targets: '#card',
+        opacity: 1,
+        easing: 'easeInCubic',
+        duration: 500
+    };
+    let svgQuoteIntro = {
+        targets: '#svg-quote',
+        opacity: [ {  value: 1, easing: 'easeInSine' } ],
+        translateY: [ { value: [-30, 13], easing: 'easeInQuart' } ],
+        duration: 350,
+        offset: '-=200'
+    };
+    let quoteTextIntro = {
+        targets: '#quote__text',
+        opacity: [ {  value: 1, easing: 'easeInSine' } ],
+        translateX: [ { value: [-15, 0], easing: 'easeOutQuart' } ],
+        duration: 350
+    };
+    let quoteCitationIntro = {
+        targets: '#quote__citation',
+        opacity: 1,
+        translateX: [ { value: [-10, 0], easing: 'easeOutQuart' } ],
+        easing: 'easeInSine',
+        duration: 350,
+        offset: '-=100'
+    };
+    let tweetButtonIntro = {
+        targets: '#buttons__svg-tweet',
+        opacity: 1,
+        easing: 'easeInSine',
+        duration: 300,
+        offset: '-=150'
+    };
+    let randomButtonIntro = {
+        targets: '#buttons__svg-random',
+        opacity: 1,
+        easing: 'easeInSine',
+        duration: 300,
+        offset: '-=150'
+    };
+    let copyrightIntro = {
+        targets: '#copyright',
+        opacity: 1,
+        easing: 'easeInSine',
+        duration: 350,
+        offset: '200'
     };
 
-    document.getElementById('card').animate(cardIntro, options);
-}
-
-function animateCopyrightIntro() {
-    let cardIntro = [
-        { opacity: 0, easing: 'ease-in' },
-        { opacity: 1 }
-    ];
-
-    let options = {
-        duration: 500,
-        fill: 'forwards'
-    };
-
-    document.getElementById('copyright').animate(cardIntro, options);
+    anime.timeline()
+    .add(cardIntro)
+    .add(svgQuoteIntro)
+    .add(quoteTextIntro)
+    .add(quoteCitationIntro)
+    .add(tweetButtonIntro)
+    .add(randomButtonIntro)
+    .add(copyrightIntro);
 }

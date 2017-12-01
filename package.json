@@ -9,7 +9,7 @@
     "imagemin": "imagemin -p=mozjpeg src/images/*.jpg -o dist/images",
     "prebuild-dev": "npm run clean",
     "prebuild-prod": "npm run clean",
-    "watch": "webpack --watch",
+    "watch": "webpack --watch --display-modules",
     "build-dev:css": "rm -f dist/css/* && npm run autoprefixer-dev && npm run cssnano-dev",
     "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
     "build-dev:js": "webpack",
@@ -26,5 +26,8 @@
     "imagemin-mozjpeg": "^6.0.0",
     "postcss-cli": "^4.1.1",
     "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "animejs": "^2.2.0"
   }
 }
