@@ -4,99 +4,65 @@ initialize();
 
 function initialize() {
     prepareAnimatables();
-    registerListeners();
+    window.addEventListener('load', intro());
 }
 
 function prepareAnimatables() {
-    hideCard();
-    hideSvgQuote();
-    hideQuoteText();
-    hideQuoteCitation();
-    hideTweetButton();
-    hideRandomButton();
-    hideCopyright();
-}
-
-function hideCard() {
     document.getElementById('card').style.opacity = 0;
-}
-
-function hideSvgQuote() {
     document.getElementById('svg-quote').style.opacity = 0;
-}
-
-function hideQuoteText() {
     document.getElementById('quote__text').style.opacity = 0;
-}
-
-function hideQuoteCitation() {
     document.getElementById('quote__citation').style.opacity = 0;
-}
-
-function hideTweetButton() {
     document.getElementById('buttons__svg-tweet').style.opacity = 0;
-}
-
-function hideRandomButton() {
     document.getElementById('buttons__svg-random').style.opacity = 0;
-}
-
-function hideCopyright() {
     document.getElementById('copyright').style.opacity = 0;
-}
-
-function registerListeners() {
-    window.addEventListener('load', intro);
 }
 
 function intro() {
     let cardIntro = {
         targets: '#card',
         opacity: 1,
-        easing: 'easeInCubic',
+        easing: 'easeInSine',
         duration: 500
     };
     let svgQuoteIntro = {
         targets: '#svg-quote',
         opacity: [ {  value: 1, easing: 'easeInSine' } ],
-        translateY: [ { value: [-30, 13], easing: 'easeInQuart' } ],
+        translateY: [ { value: [-30, 13], easing: 'easeOutSine' } ],
         duration: 350,
         offset: '-=200'
     };
     let quoteTextIntro = {
         targets: '#quote__text',
         opacity: [ {  value: 1, easing: 'easeInSine' } ],
-        translateX: [ { value: [-15, 0], easing: 'easeOutQuart' } ],
-        duration: 350
+        duration: 400,
+        offset: '-=100'
     };
     let quoteCitationIntro = {
         targets: '#quote__citation',
-        opacity: 1,
-        translateX: [ { value: [-10, 0], easing: 'easeOutQuart' } ],
-        easing: 'easeInSine',
-        duration: 350,
-        offset: '-=100'
+        opacity: [ {  value: 1, easing: 'easeInSine' } ],
+        translateX: [ { value: [-20, 0], easing: 'easeOutSine' } ],
+        duration: 300,
+        offset: '-=200'
     };
     let tweetButtonIntro = {
         targets: '#buttons__svg-tweet',
-        opacity: 1,
-        easing: 'easeInSine',
-        duration: 300,
-        offset: '-=150'
+        opacity: [ {  value: 1, easing: 'easeInSine' } ],
+        translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],//
+        duration: 350,
+        offset: 300
     };
     let randomButtonIntro = {
         targets: '#buttons__svg-random',
-        opacity: 1,
-        easing: 'easeInSine',
-        duration: 300,
-        offset: '-=150'
+        opacity: [ {  value: 1, easing: 'easeInSine' } ],
+        translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],//
+        duration: 350,
+        offset: 400
     };
     let copyrightIntro = {
         targets: '#copyright',
-        opacity: 1,
-        easing: 'easeInSine',
-        duration: 350,
-        offset: '200'
+        opacity: [ {  value: 1, easing: 'easeInSine' } ],
+        duration: 250,
+        offset: '-=200'
     };
 
     anime.timeline()
