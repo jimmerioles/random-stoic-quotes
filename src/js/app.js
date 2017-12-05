@@ -27,7 +27,7 @@ function intro() {
     let svgQuoteIntro = {
         targets: '#svg-quote',
         opacity: [ {  value: 1, easing: 'easeInSine' } ],
-        translateY: [ { value: [-50, 13], easing: 'easeOutSine' } ],
+        translateY: [ { value: [-30, 13], easing: 'easeOutSine' } ],
         duration: 350,
         offset: '-=200'
     };
@@ -47,14 +47,14 @@ function intro() {
     let tweetButtonIntro = {
         targets: '#buttons__svg-tweet',
         opacity: [ {  value: 1, easing: 'easeInSine' } ],
-        translateY: [ { value: [50, 0], easing: 'easeOutSine' } ],//
+        translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],//
         duration: 350,
         offset: 300
     };
     let randomButtonIntro = {
         targets: '#buttons__svg-random',
         opacity: [ {  value: 1, easing: 'easeInSine' } ],
-        translateY: [ { value: [50, 0], easing: 'easeOutSine' } ],//
+        translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],//
         duration: 350,
         offset: 400
     };
