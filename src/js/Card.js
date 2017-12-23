@@ -1,16 +1,30 @@
 import anime from 'animejs';
+import QuoteRepository from './QuoteRepository.js';
 
 class Card {
-    constructor(quoteRepository) {
+    constructor(
+        quoteRepository = new QuoteRepository(),
+        animation = anime,
+        el = document.getElementById('card'),
+        svgQuote = document.getElementById('svg-quote'),
+        quoteText = document.getElementById('quote__text'),
+        quoteCitation = document.getElementById('quote__citation'),
+        btnTweet = document.getElementById('buttons__svg-tweet'),
+        btnRandom = document.getElementById('buttons__svg-random')
+    ) {
+        this.animation = animation;
         this.quoteRepo = quoteRepository;
-        this.animation = anime;
 
-        this.el = document.getElementById('card');
-        this.svgQuote = document.getElementById('svg-quote');
-        this.quoteText = document.getElementById('quote__text');
-        this.quoteCitation = document.getElementById('quote__citation');
-        this.btnTweet = document.getElementById('buttons__svg-tweet');
-        this.btnRandom = document.getElementById('buttons__svg-random');
+        this.el = el;
+        this.btnTweet = btnTweet;
+        this.svgQuote = svgQuote;
+        this.btnRandom = btnRandom;
+        this.quoteText = quoteText;
+        this.quoteCitation = quoteCitation;
+    }
+
+    runPreLoadActions() {
+        this.hide();
     }
 
     hide() {
@@ -20,6 +34,10 @@ class Card {
         this.quoteCitation.style.opacity = 0;
         this.btnTweet.style.opacity = 0;
         this.btnRandom.style.opacity = 0;
+    }
+
+    registerEventListeners() {
+        //onclick randomBtn
     }
 
     intro() {

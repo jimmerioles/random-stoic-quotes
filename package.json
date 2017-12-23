@@ -14,7 +14,7 @@
     "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
     "build-dev:js": "webpack",
     "build-dev": "npm run build-dev:css && npm run build-dev:js && npm run imagemin",
-    "build-prod": "npm run build-prod:css && npm run imagemin"
+    "build-prod": "npm run build-prod:css && npm run build-dev:js && npm run imagemin"
   },
   "keywords": [],
   "author": "",
