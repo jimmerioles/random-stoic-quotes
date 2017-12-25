@@ -6,9 +6,9 @@ class Card {
     /*
     * Create Card instance.
     *
+    * @param {Object} el - Card's element.
     * @param {Object} quoteRepository - QuoteRepository instance.
     * @param {Object} animation - Animejs instance.
-    * @param {Object} el - card element.
     * @param {Object} svgQuote - SVG Quote element.
     * @param {Object} quoteText - Quote's text.
     * @param {Object} quoteCitation - Quote's citation.

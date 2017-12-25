@@ -1,7 +1,7 @@
 import anime from 'animejs';
 
 /*
-* App's credits element/section.
+* Represents the credits element of the app.
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
@@ -9,6 +9,9 @@ class Credits {
 
     /*
     * Create Credits instance.
+    *
+    * @param {Object} el - Credits' element.
+    * @param {Object} animation - Animejs instance.
     */
     constructor(el = document.getElementById('credits'), animation = anime) {
         console.log(`${performance.now() - APP_START}: Credits@constructor()`);//

@@ -3,7 +3,7 @@ import Card from './Card.js';
 import Credits from './Credits.js';
 
 /*
-* Random Stoic Quotes Generator App.
+* Represents the app .
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
@@ -12,9 +12,9 @@ class RandomStoicQuotes {
     /*
     * Create RandomStoicQuotes instance.
     *
-    * @param {Object} animation - Animejs instance.
     * @param {Object} card - Card instance.
     * @param {Object} credits - Credits instance.
+    * @param {Object} animation - Animejs instance.
     */
     constructor(card = new Card(), credits = new Credits(), animation = anime) {
         console.log(`${performance.now() - APP_START}: RandomStoicQuotes@constructor()`);//
