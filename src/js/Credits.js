@@ -21,9 +21,11 @@ class Credits {
     }
 
     /*
-    * Run credits actions before load.
+    * Run actions before load.
     */
     runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: Credits@runPreLoadActions()`);//
+
         this.el.style.opacity = 0;
     }
 

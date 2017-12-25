@@ -113,8 +113,10 @@ function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.len
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RandomStoicQuotes_js__ = __webpack_require__(2);
 /*
-* Random Stoic Quotes - consumes quotes from Random Stoic Quotes API
-* <https://randomstoicquotesapi.herokuapp.com/>
+* Entry point for Random Stoic Quotes Generator app. Consumes quotes from
+* Random Stoic Quotes API <https://randomstoicquotesapi.herokuapp.com>.
+*
+* Thank you for checking out the source! :) #ImAvailableForHire!
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
@@ -142,7 +144,7 @@ app.inspire();
 
 
 /*
-* Random Stoic Quotes Generator App.
+* Represents the app .
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
@@ -151,9 +153,9 @@ class RandomStoicQuotes {
     /*
     * Create RandomStoicQuotes instance.
     *
-    * @param {Object} animation - Animejs instance.
     * @param {Object} card - Card instance.
     * @param {Object} credits - Credits instance.
+    * @param {Object} animation - Animejs instance.
     */
     constructor(card = new __WEBPACK_IMPORTED_MODULE_1__Card_js__["a" /* default */](), credits = new __WEBPACK_IMPORTED_MODULE_2__Credits_js__["a" /* default */](), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
         console.log(`${performance.now() - APP_START}: RandomStoicQuotes@constructor()`);//
@@ -241,84 +243,123 @@ module.exports = g;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__QuoteRepository_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Card_SvgQuote_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Card_QuoteText_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Card_TweetButton_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Card_RandomButton_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__QuoteRepository_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Card_QuoteCitation_js__ = __webpack_require__(9);
 
 
 
+
+
+
+
+
+/*
+* Represents the card module of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
 class Card {
 
     /*
     * Create Card instance.
     *
+    * @param {Object} el - Card's element.
+    * @param {Object} svgQuote - SvgQuote instance.
+    * @param {Object} quoteText - QuoteText instance.
+    * @param {Object} quoteCitation - QuoteCitation instance.
+    * @param {Object} tweetBtn - TweetButton instance.
+    * @param {Object} randomBtn - RandomButton instance.
+    *
     * @param {Object} quoteRepository - QuoteRepository instance.
     * @param {Object} animation - Animejs instance.
-    * @param {Object} el - card element.
-    * @param {Object} svgQuote - SVG Quote element.
-    * @param {Object} quoteText - Quote's text.
-    * @param {Object} quoteCitation - Quote's citation.
-    * @param {Object} btnTweet - Tweet button.
-    * @param {Object} btnRandom - Random button.
     */
     constructor(
-        quoteRepository = new __WEBPACK_IMPORTED_MODULE_1__QuoteRepository_js__["a" /* default */](),
-        animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a,
         el = document.getElementById('card'),
-        svgQuote = document.getElementById('svg-quote'),
-        quoteText = document.getElementById('quote__text'),
-        quoteCitation = document.getElementById('quote__citation'),
-        btnTweet = document.getElementById('buttons__svg-tweet'),
-        btnRandom = document.getElementById('buttons__svg-random')
+        svgQuote = new __WEBPACK_IMPORTED_MODULE_1__Card_SvgQuote_js__["a" /* default */](),
+        quoteText = new __WEBPACK_IMPORTED_MODULE_2__Card_QuoteText_js__["a" /* default */](),
+        quoteCitation = new __WEBPACK_IMPORTED_MODULE_6__Card_QuoteCitation_js__["a" /* default */](),
+        tweetBtn = new __WEBPACK_IMPORTED_MODULE_3__Card_TweetButton_js__["a" /* default */](),
+        randomBtn = new __WEBPACK_IMPORTED_MODULE_4__Card_RandomButton_js__["a" /* default */](),
+        quoteRepository = new __WEBPACK_IMPORTED_MODULE_5__QuoteRepository_js__["a" /* default */](),
+        animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a
     ) {
-        console.log(`${performance.now() - APP_START}: Card constructor`);//
-
-        this.animation = animation;
-        this.quoteRepo = quoteRepository;
+        console.log(`${performance.now() - APP_START}: Card@constructor()`);//
 
         this.el = el;
-        this.btnTweet = btnTweet;
         this.svgQuote = svgQuote;
-        this.btnRandom = btnRandom;
         this.quoteText = quoteText;
         this.quoteCitation = quoteCitation;
+        this.tweetBtn = tweetBtn;
+        this.randomBtn = randomBtn;
+        this.quoteRepo = quoteRepository;
+        this.animation = animation;
     }
 
     /*
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: Card runPreLoadActions()`);//
+        console.log(`${performance.now() - APP_START}: Card@runPreLoadActions()`);//
 
-        this.hide();
+        this.el.style.opacity = 0;
+        this.svgQuote.runPreLoadActions();
+        this.quoteText.runPreLoadActions();
+        this.quoteCitation.runPreLoadActions();
+        this.tweetBtn.runPreLoadActions();
+        this.randomBtn.runPreLoadActions();
     }
 
     /*
-    * Hide card and child elements.
+    * Run animation for intro.
     */
-    hide() {
-        console.log(`${performance.now() - APP_START}: Card hide()`);//
+    animateIntro() {
+        console.log(`${performance.now() - APP_START}: Card@animateIntro()`);//
 
-        this.el.style.opacity = 0;
-        this.svgQuote.style.opacity = 0;
-        this.quoteText.style.opacity = 0;
-        this.quoteCitation.style.opacity = 0;
-        this.btnTweet.style.opacity = 0;
-        this.btnRandom.style.opacity = 0;
+        this.animation.timeline()
+            .add(this.introAnimationSettings())
+            .add(this.svgQuote.introAnimationSettings())
+            .add(this.quoteText.introAnimationSettings())
+            .add(this.quoteCitation.introAnimationSettings())
+            .add(this.tweetBtn.introAnimationSettings())
+            .add(this.randomBtn.introAnimationSettings());
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animations settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: Card@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: 1,
+            easing: 'easeInSine',
+            duration: 500
+        };
     }
 
     /*
     * Register event listeners.
     */
     registerEventListeners() {
-        console.log(`${performance.now() - APP_START}: Card registerEventListeners()`);//
+        console.log(`${performance.now() - APP_START}: Card@registerEventListeners()`);//
 
-        this.btnRandom.parentNode.addEventListener('click', (event) => this.random(event));
+        this.randomBtn.el.parentNode.addEventListener('click', (event) => this.random(event));
     }
 
     /*
-    * Run card random animation.
+    * Generate random quote.
+    *
+    * @param {Object} event - Event object.
     */
     random(event) {
-        console.log(`${performance.now() - APP_START}: Card random()`);//
+        console.log(`${performance.now() - APP_START}: Card@random()`);//
 
         event.preventDefault();
         this.animateOutro().finished.then(() => this.createNew());
@@ -327,119 +368,26 @@ class Card {
     /*
     * Run card outro animation.
     *
-    * @return {Object}
+    * @return {Object} Animejs instance.
     */
     animateOutro() {
         console.log(`${performance.now() - APP_START}: Card animateOutro()`);//
 
         return this.animation.timeline()
-            .add(this.randomButtonOutroAnimationSettings())
-            .add(this.tweetButtonOutroAnimationSettings())
-            .add(this.quoteTextOutroAnimationSettings())
-            .add(this.quoteCitationOutroAnimationSettings())
-            .add(this.svgQuoteOutroAnimationSettings())
-            .add(this.cardOutroAnimationSettings());
+            .add(this.randomBtn.outroAnimationSettings())
+            .add(this.tweetBtn.outroAnimationSettings())
+            .add(this.quoteText.outroAnimationSettings())
+            .add(this.quoteCitation.outroAnimationSettings())
+            .add(this.svgQuote.outroAnimationSettings())
+            .add(this.outroAnimationSettings());
     }
 
     /*
-    * Create new card with new quote content.
-    */
-    createNew() {
-        console.log(`${performance.now() - APP_START}: Card createNew()`);//
-
-        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../dist/images/captjacksparrow-m.jpg')`;
-        this.el.style.opacity = 1;
-    }
-
-    /*
-    * Get random button outro animation settings.
+    * Get animation settings for outro.
     *
-    * @return {Object}
+    * @return {Object} The animation settings.
     */
-    randomButtonOutroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card randomButtonOutroAnimationSettings()`);//
-
-        return {
-            targets: this.btnRandom,
-            opacity: [ {  value: 0, easing: 'easeInSine' } ],
-            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
-            duration: 350
-        };
-    }
-
-    /*
-    * Get tweet button outro animation settings.
-    *
-    * @return {Object}
-    */
-    tweetButtonOutroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card tweetButtonOutroAnimationSettings()`);//
-
-        return {
-            targets: this.btnTweet,
-            opacity: [ {  value: 0, easing: 'easeInSine' } ],
-            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
-            duration: 350,
-            offset: '-=200'
-        };
-    }
-
-    /*
-    * Get quote text outro animation settings.
-    *
-    * @return {Object}
-    */
-    quoteTextOutroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card quoteTextOutroAnimationSettings()`);//
-
-        return {
-            targets: this.quoteText,
-            opacity: [ {  value: 0, easing: 'easeOutSine' } ],
-            duration: 400,
-            offset: 0
-        };
-    }
-
-    /*
-    * Get quote citation outro animation settings.
-    *
-    * @return {Object}
-    */
-    quoteCitationOutroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card quoteCitationOutroAnimationSettings()`);//
-
-        return {
-            targets: this.quoteCitation,
-            opacity: [ {  value: 0, easing: 'easeOutSine' } ],
-            translateX: [ { value: [0, 20], easing: 'easeInSine' } ],
-            duration: 300,
-            offset: 0
-        };
-    }
-
-    /*
-    * Get svg quote outro animation settings.
-    *
-    * @return {Object}
-    */
-    svgQuoteOutroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card svgQuoteOutroAnimationSettings()`);//
-
-        return {
-            targets: this.svgQuote,
-            opacity: [ {  value: 0, easing: 'easeInSine' } ],
-            translateY: [ { value: [13, -30], easing: 'easeInSine' } ],
-            duration: 350,
-            offset: 150
-        };
-    }
-
-    /*
-    * Get card outro animation settings.
-    *
-    * @return {Object}
-    */
-    cardOutroAnimationSettings() {
+    outroAnimationSettings() {
         console.log(`${performance.now() - APP_START}: Card cardOutroAnimationSettings()`);//
 
         return {
@@ -451,118 +399,13 @@ class Card {
     }
 
     /*
-    * Run card animation intro.
+    * Create new card with new quote content.
     */
-    animateIntro() {
-        console.log(`${performance.now() - APP_START}: Card animateIntro()`);//
+    createNew() {
+        console.log(`${performance.now() - APP_START}: Card createNew()`);//
 
-        this.animation.timeline()
-            .add(this.cardIntroAnimationSettings())
-            .add(this.svgQuoteIntroAnimationSettings())
-            .add(this.quoteTextIntroAnimationSettings())
-            .add(this.quoteCitationIntroAnimationSettings())
-            .add(this.tweetButtonIntroAnimationSettings())
-            .add(this.randomButtonIntroAnimationSettings());
-    }
-
-    /*
-    * Get card intro animation settings.
-    *
-    * @return {Object}
-    */
-    cardIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card cardIntroAnimationSettings()`);//
-
-        return {
-            targets: this.el,
-            opacity: 1,
-            easing: 'easeInSine',
-            duration: 500
-        };
-    }
-
-    /*
-    * Get svg quote intro animation settings.
-    *
-    * @return {Object}
-    */
-    svgQuoteIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card svgQuoteIntroAnimationSettings()`);//
-
-        return {
-            targets: this.svgQuote,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            translateY: [ { value: [-30, 13], easing: 'easeOutSine' } ],
-            duration: 350,
-            offset: '-=200'
-        };
-    }
-
-    /*
-    * Get quote text intro animation settings.
-    *
-    * @return {Object}
-    */
-    quoteTextIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card quoteTextIntroAnimationSettings()`);//
-
-        return {
-            targets: this.quoteText,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            duration: 400,
-            offset: '-=100'
-        };
-    }
-
-    /*
-    * Get citation intro animation settings.
-    *
-    * @return {Object}
-    */
-    quoteCitationIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card quoteCitationIntroAnimationSettings()`);//
-
-        return {
-            targets: this.quoteCitation,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            translateX: [ { value: [-20, 0], easing: 'easeOutSine' } ],
-            duration: 300,
-            offset: '-=200'
-        };
-    }
-
-    /*
-    * Get tweet button intro animation settings.
-    *
-    * @return {Object}
-    */
-    tweetButtonIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card tweetButtonIntroAnimationSettings()`);//
-
-        return {
-            targets: this.btnTweet,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
-            duration: 350,
-            offset: 300
-        };
-    }
-
-    /*
-    * Get random button intro animation settings.
-    *
-    * @return {Object}
-    */
-    randomButtonIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card randomButtonIntroAnimationSettings()`);//
-
-        return {
-            targets: this.btnRandom,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
-            duration: 350,
-            offset: 400
-        };
+        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../dist/images/captjacksparrow-m.jpg')`;
+        this.el.style.opacity = 1;
     }
 }
 
@@ -576,7 +419,7 @@ class Card {
 "use strict";
 class QuoteRepository {
     constructor() {
-        console.log(`${performance.now() - APP_START}: QuoteRepository constructor`);//
+        console.log(`${performance.now() - APP_START}: QuoteRepository@constructor`);//
 
     }
 }
@@ -594,7 +437,7 @@ class QuoteRepository {
 
 
 /*
-* App's credits element/section.
+* Represents the credits element of the app.
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
@@ -602,6 +445,9 @@ class Credits {
 
     /*
     * Create Credits instance.
+    *
+    * @param {Object} el - Credits' element.
+    * @param {Object} animation - Animejs instance.
     */
     constructor(el = document.getElementById('credits'), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
         console.log(`${performance.now() - APP_START}: Credits@constructor()`);//
@@ -611,9 +457,11 @@ class Credits {
     }
 
     /*
-    * Run credits actions before load.
+    * Run actions before load.
     */
     runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: Credits@runPreLoadActions()`);//
+
         this.el.style.opacity = 0;
     }
 
@@ -644,6 +492,350 @@ class Credits {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Credits);
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the svg quote element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class SvgQuote {
+
+    /*
+    * Create SvgQuote instance.
+    *
+    * @param {Object} el - SvgQuote's element.
+    */
+    constructor(el = document.getElementById('svg-quote')) {
+        console.log(`${performance.now() - APP_START}: SvgQuote@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: SvgQuote@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: SvgQuote@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            translateY: [ { value: [-30, 13], easing: 'easeOutSine' } ],
+            duration: 350,
+            offset: '-=200'
+        };
+    }
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: SvgQuote@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeInSine' } ],
+            translateY: [ { value: [13, -30], easing: 'easeInSine' } ],
+            duration: 350,
+            offset: 150
+        };
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (SvgQuote);
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the quote text element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class QuoteText {
+    /*
+    * Create QuoteText instance.
+    *
+    * @param {Object} el - QuoteText's element.
+    */
+    constructor(el = document.getElementById('quote__text')) {
+        console.log(`${performance.now() - APP_START}: QuoteText@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: QuoteText@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: QuoteText@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            duration: 400,
+            offset: '-=100'
+        };
+    }
+
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: QuoteText@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeOutSine' } ],
+            duration: 400,
+            offset: 0
+        };
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (QuoteText);
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the quote citation element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class QuoteCitation {
+    /*
+    * Create QuoteCitation instance.
+    *
+    * @param {Object} el - QuoteCitation's element.
+    */
+    constructor(el = document.getElementById('quote__citation')) {
+        console.log(`${performance.now() - APP_START}: QuoteCitation@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: QuoteCitation@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: QuoteCitation@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            translateX: [ { value: [-20, 0], easing: 'easeOutSine' } ],
+            duration: 300,
+            offset: '-=200'
+        };
+    }
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: QuoteCitation@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeOutSine' } ],
+            translateX: [ { value: [0, 20], easing: 'easeInSine' } ],
+            duration: 300,
+            offset: 0
+        };
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (QuoteCitation);
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the tweet button element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class TweetButton {
+    /*
+    * Create TweetButton instance.
+    *
+    * @param {Object} el - TweetButton's element.
+    */
+    constructor(el = document.getElementById('buttons__svg-tweet')) {
+        console.log(`${performance.now() - APP_START}: TweetButton@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: TweetButton@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: TweetButton@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
+            duration: 350,
+            offset: 300
+        };
+    }
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: TweetButton@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeInSine' } ],
+            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
+            duration: 350,
+            offset: '-=200'
+        };
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (TweetButton);
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the random button element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class RandomButton {
+    /*
+    * Create RandonButton instance.
+    *
+    * @param {Object} el - RandomButton's element.
+    */
+    constructor(el = document.getElementById('buttons__svg-random')) {
+        console.log(`${performance.now() - APP_START}: RandomButton@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: RandomButton@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: RandomButton@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
+            duration: 350,
+            offset: 400
+        };
+    }
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: RandomButton@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeInSine' } ],
+            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
+            duration: 350
+        };
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (RandomButton);
 
 
 /***/ })
