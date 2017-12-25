@@ -116,7 +116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 * Random Stoic Quotes - consumes quotes from Random Stoic Quotes API
 * <https://randomstoicquotesapi.herokuapp.com/>
 *
-* @author Jim Wisley Merioles <jimwisleymerioles@gmail.com>
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
 window.APP_START = performance.now();//
 console.log(`${window.APP_START}: app.js start`)//
@@ -136,9 +136,16 @@ app.inspire();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Card_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Credits_js__ = __webpack_require__(6);
 
 
 
+
+/*
+* Random Stoic Quotes Generator App.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
 class RandomStoicQuotes {
 
     /*
@@ -146,13 +153,13 @@ class RandomStoicQuotes {
     *
     * @param {Object} animation - Animejs instance.
     * @param {Object} card - Card instance.
-    * @param {Object} copyright - copyright element.
+    * @param {Object} credits - Credits instance.
     */
-    constructor(animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a, card = new __WEBPACK_IMPORTED_MODULE_1__Card_js__["a" /* default */](), copyright = document.getElementById('copyright')) {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes constructor()`);//
+    constructor(card = new __WEBPACK_IMPORTED_MODULE_1__Card_js__["a" /* default */](), credits = new __WEBPACK_IMPORTED_MODULE_2__Credits_js__["a" /* default */](), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@constructor()`);//
 
         this.card = card;
-        this.copyright = copyright;
+        this.credits = credits;
         this.animation = animation;
     }
 
@@ -160,65 +167,40 @@ class RandomStoicQuotes {
     * Initialize app.
     */
     inspire() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes inspire()`);//
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@inspire()`);//
 
         this.runPreLoadActions();
         this.registerEventListeners();
     }
 
     /*
-    * Run actions before load.
+    * Run actions before app onload.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes runPreloadActions()`);//
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@runPreloadActions()`);//
 
         this.card.runPreLoadActions();
-        this.copyright.style.opacity = 0;
+        this.credits.runPreLoadActions();
     }
 
     /*
-    * Register event listeners.
+    * Register event listeners for app.
     */
     registerEventListeners() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes registerEventListeners()`);//
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@registerEventListeners()`);//
 
         window.addEventListener('load', () => this.animateIntro());
         this.card.registerEventListeners();
     }
 
     /*
-    * Run app animation intro.
+    * Run animation for app intro.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes animateIntro()`);//
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@animateIntro()`);//
 
-        this.card.animateIntro(); //TODO: make this into `this.card.intro().finished.then(this.copyrightIntro())`;
-        this.animateCopyrightIntro();
-    }
-
-    /*
-    * Run copyright animation intro.
-    */
-    animateCopyrightIntro() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes copyrightIntro()`);//
-
-        this.animation.timeline().add(this.copyrightIntroAnimationSettings());
-    }
-
-    /*
-    * Get copyright intro animation settings.
-    *
-    * @return {Object}
-    */
-    copyrightIntroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes copyrightIntroAnimationSettings()`);//
-
-        return {
-            targets: this.copyright,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            duration: 250,
-            offset: 850
-        };
+        this.card.animateIntro(); //TODO: try to make this into `this.card.intro().finished.then(this.copyrightIntro())`;
+        this.credits.animateIntro();
     }
 }
 
@@ -600,6 +582,68 @@ class QuoteRepository {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (QuoteRepository);
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
+
+
+/*
+* App's credits element/section.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class Credits {
+
+    /*
+    * Create Credits instance.
+    */
+    constructor(el = document.getElementById('credits'), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
+        console.log(`${performance.now() - APP_START}: Credits@constructor()`);//
+
+        this.el = el;
+        this.animation = animation;
+    }
+
+    /*
+    * Run credits actions before load.
+    */
+    runPreLoadActions() {
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Run animation for intro.
+    */
+    animateIntro() {
+        console.log(`${performance.now() - APP_START}: Credits@creditsIntro()`);//
+
+        this.animation.timeline().add(this.introAnimationSettings());
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animations settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: Credits@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            duration: 250,
+            offset: 850
+        };
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Credits);
 
 
 /***/ })
