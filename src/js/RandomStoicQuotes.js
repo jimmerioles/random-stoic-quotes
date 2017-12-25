@@ -8,9 +8,11 @@ class RandomStoicQuotes {
     *
     * @param {Object} animation - Animejs instance.
     * @param {Object} card - Card instance.
-    * @param {string} copyright - copyright element.
+    * @param {Object} copyright - copyright element.
     */
     constructor(animation = anime, card = new Card(), copyright = document.getElementById('copyright')) {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes constructor()`);//
+
         this.card = card;
         this.copyright = copyright;
         this.animation = animation;
@@ -20,6 +22,8 @@ class RandomStoicQuotes {
     * Initialize app.
     */
     inspire() {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes inspire()`);//
+
         this.runPreLoadActions();
         this.registerEventListeners();
     }
@@ -28,6 +32,8 @@ class RandomStoicQuotes {
     * Run actions before load.
     */
     runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes runPreloadActions()`);//
+
         this.card.runPreLoadActions();
         this.copyright.style.opacity = 0;
     }
@@ -36,22 +42,28 @@ class RandomStoicQuotes {
     * Register event listeners.
     */
     registerEventListeners() {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes registerEventListeners()`);//
+
+        window.addEventListener('load', () => this.animateIntro());
         this.card.registerEventListeners();
-        window.addEventListener('load', this.intro());
     }
 
     /*
     * Run app animation intro.
     */
-    intro() {
-        this.card.intro();
-        this.copyrightIntro();
+    animateIntro() {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes animateIntro()`);//
+
+        this.card.animateIntro(); //TODO: make this into `this.card.intro().finished.then(this.copyrightIntro())`;
+        this.animateCopyrightIntro();
     }
 
     /*
     * Run copyright animation intro.
     */
-    copyrightIntro() {
+    animateCopyrightIntro() {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes copyrightIntro()`);//
+
         this.animation.timeline().add(this.copyrightIntroAnimationSettings());
     }
 
@@ -61,6 +73,8 @@ class RandomStoicQuotes {
     * @return {Object}
     */
     copyrightIntroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: RandomStoicQuotes copyrightIntroAnimationSettings()`);//
+
         return {
             targets: this.copyright,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
