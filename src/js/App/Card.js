@@ -1,14 +1,14 @@
 import anime from 'animejs';
-import SvgQuote from './Card/SvgQuote.js';
-import QuoteText from './Card/QuoteText.js';
-import TweetButton from './Card/TweetButton.js';
-import RandomButton from './Card/RandomButton.js';
-import QuoteRepository from './QuoteRepository.js';
-import QuoteCitation from './Card/QuoteCitation.js';
+import SvgQuote from './Elements/SvgQuote.js';
+import QuoteText from './Elements/QuoteText.js';
+import TweetButton from './Elements/TweetButton.js';
+import RandomButton from './Elements/RandomButton.js';
+import QuoteCitation from './Elements/QuoteCitation.js';
+import QuoteRepository from './Repository/QuoteRepository.js';
 
 /*
-* Represents the card module of the app.
-*
+* Represents the card model of the app
+. *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
 class Card {
@@ -33,7 +33,7 @@ class Card {
         quoteCitation = new QuoteCitation(),
         tweetBtn = new TweetButton(),
         randomBtn = new RandomButton(),
-        quoteRepository = new QuoteRepository(),
+        quoteRepo = new QuoteRepository(),
         animation = anime
     ) {
         console.log(`${performance.now() - APP_START}: Card@constructor()`);//
@@ -44,7 +44,7 @@ class Card {
         this.quoteCitation = quoteCitation;
         this.tweetBtn = tweetBtn;
         this.randomBtn = randomBtn;
-        this.quoteRepo = quoteRepository;
+        this.quoteRepo = quoteRepo;
         this.animation = animation;
     }
 
@@ -60,15 +60,18 @@ class Card {
         this.quoteCitation.runPreLoadActions();
         this.tweetBtn.runPreLoadActions();
         this.randomBtn.runPreLoadActions();
+        this.quoteRepo.runPreLoadActions();
     }
 
     /*
     * Run animation for intro.
+    *
+    * @return {Object} Animejs instance.
     */
     animateIntro() {
         console.log(`${performance.now() - APP_START}: Card@animateIntro()`);//
 
-        this.animation.timeline()
+        return this.animation.timeline()
             .add(this.introAnimationSettings())
             .add(this.svgQuote.introAnimationSettings())
             .add(this.quoteText.introAnimationSettings())
@@ -111,16 +114,25 @@ class Card {
         console.log(`${performance.now() - APP_START}: Card@random()`);//
 
         event.preventDefault();
-        this.animateOutro().finished.then(() => this.createNew());
+        this.disableButtons();
+        this.animateOutro().finished.then(() => this.showNew());
     }
 
     /*
-    * Run card outro animation.
+    * Disable buttons.
+    */
+    disableButtons() {
+        this.randomBtn.disable();
+        this.tweetBtn.disable();
+    }
+
+    /*
+    * Run card outro animation.gasul cebu lahug nivel hills
     *
     * @return {Object} Animejs instance.
     */
     animateOutro() {
-        console.log(`${performance.now() - APP_START}: Card animateOutro()`);//
+        console.log(`${performance.now() - APP_START}: Card@animateOutro()`);//
 
         return this.animation.timeline()
             .add(this.randomBtn.outroAnimationSettings())
@@ -137,24 +149,55 @@ class Card {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card cardOutroAnimationSettings()`);//
+        console.log(`${performance.now() - APP_START}: Card@outroAnimationSettings()`);//
 
         return {
             targets: this.el,
-            opacity: [ {  value: 0, easing: 'easeOutSine' } ],
+            opacity: [ { value: 0, easing: 'easeOutSine' } ],
             duration: 500,
             offset: '-=200',
         };
     }
 
     /*
-    * Create new card with new quote content.
+    * Show new card with new quote content.
     */
-    createNew() {
-        console.log(`${performance.now() - APP_START}: Card createNew()`);//
+    showNew() {
+        console.log(`${performance.now() - APP_START}: Card@showNew()`);//
 
-        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../dist/images/captjacksparrow-m.jpg')`;
-        this.el.style.opacity = 1;
+        this.setContent(this.quoteRepo.getRandom());
+        this.animateIntro().finished.then(() => this.enableButtons());
+    }
+
+    /*
+    * Enable buttons.
+    */
+    enableButtons() {
+        this.randomBtn.enable();
+        this.tweetBtn.enable();
+    }
+
+    /*
+    * Set card's content with quote.
+    *
+    * @param {Object} quote - Quote model instance.
+    */
+    setContent(quote) {
+        console.log(`${performance.now() - APP_START}: Card@setContent()`);//
+        this.setBackgroundImage(quote.image);
+        this.quoteText.setContent(quote.text);
+        this.quoteCitation.setContent(quote.author);
+    }
+
+    /*
+    * Set card's background with image.
+    *
+    * @param {string} image - Image filename with extension.
+    */
+    setBackgroundImage(image) {
+        console.log(`${performance.now() - APP_START}: Card@setBackgroundImage()`);//
+
+        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../dist/images/${image}')`;
     }
 }
 

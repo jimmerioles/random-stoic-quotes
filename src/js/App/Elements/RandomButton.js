@@ -56,6 +56,24 @@ class RandomButton {
             duration: 350
         };
     }
+
+    /*
+    * Disable button.
+    */
+    disable() {
+        console.log(`${performance.now() - APP_START}: RandomButton@disable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'none';
+    }
+
+    /*
+    * Enable button.
+    */
+    enable() {
+        console.log(`${performance.now() - APP_START}: RandomButton@enable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'auto';
+    }
 }
 
 export default RandomButton;

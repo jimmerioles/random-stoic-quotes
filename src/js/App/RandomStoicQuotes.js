@@ -1,6 +1,6 @@
 import anime from 'animejs';
 import Card from './Card.js';
-import Credits from './Credits.js';
+import Credits from './Elements/Credits.js';
 
 /*
 * Represents the app .

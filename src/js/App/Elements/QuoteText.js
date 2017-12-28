@@ -56,6 +56,17 @@ class QuoteText {
             offset: 0
         };
     }
+
+    /*
+    * Set new quote.
+    *
+    * @param {string} The new quote.
+    */
+    setContent(text) {
+        console.log(`${performance.now() - APP_START}: QuoteText@setContent()`);//
+
+        this.el.firstElementChild.innerHTML = text;
+    }
 }
 
 export default QuoteText;

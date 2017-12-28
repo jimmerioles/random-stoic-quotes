@@ -111,7 +111,7 @@ function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.len
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RandomStoicQuotes_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_RandomStoicQuotes_js__ = __webpack_require__(2);
 /*
 * Entry point for Random Stoic Quotes Generator app. Consumes quotes from
 * Random Stoic Quotes API <https://randomstoicquotesapi.herokuapp.com>.
@@ -125,7 +125,7 @@ console.log(`${window.APP_START}: app.js start`)//
 
 
 
-let app = new __WEBPACK_IMPORTED_MODULE_0__RandomStoicQuotes_js__["a" /* default */]();
+let app = new __WEBPACK_IMPORTED_MODULE_0__App_RandomStoicQuotes_js__["a" /* default */]();
 
 app.inspire();
 
@@ -138,7 +138,7 @@ app.inspire();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Card_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Credits_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Elements_Credits_js__ = __webpack_require__(13);
 
 
 
@@ -157,7 +157,7 @@ class RandomStoicQuotes {
     * @param {Object} credits - Credits instance.
     * @param {Object} animation - Animejs instance.
     */
-    constructor(card = new __WEBPACK_IMPORTED_MODULE_1__Card_js__["a" /* default */](), credits = new __WEBPACK_IMPORTED_MODULE_2__Credits_js__["a" /* default */](), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
+    constructor(card = new __WEBPACK_IMPORTED_MODULE_1__Card_js__["a" /* default */](), credits = new __WEBPACK_IMPORTED_MODULE_2__Elements_Credits_js__["a" /* default */](), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
         console.log(`${performance.now() - APP_START}: RandomStoicQuotes@constructor()`);//
 
         this.card = card;
@@ -243,12 +243,12 @@ module.exports = g;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Card_SvgQuote_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Card_QuoteText_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Card_TweetButton_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Card_RandomButton_js__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__QuoteRepository_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Card_QuoteCitation_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Elements_SvgQuote_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Elements_QuoteText_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Elements_TweetButton_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Elements_RandomButton_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Elements_QuoteCitation_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Repository_QuoteRepository_js__ = __webpack_require__(10);
 
 
 
@@ -258,8 +258,8 @@ module.exports = g;
 
 
 /*
-* Represents the card module of the app.
-*
+* Represents the card model of the app
+. *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
 class Card {
@@ -279,12 +279,12 @@ class Card {
     */
     constructor(
         el = document.getElementById('card'),
-        svgQuote = new __WEBPACK_IMPORTED_MODULE_1__Card_SvgQuote_js__["a" /* default */](),
-        quoteText = new __WEBPACK_IMPORTED_MODULE_2__Card_QuoteText_js__["a" /* default */](),
-        quoteCitation = new __WEBPACK_IMPORTED_MODULE_6__Card_QuoteCitation_js__["a" /* default */](),
-        tweetBtn = new __WEBPACK_IMPORTED_MODULE_3__Card_TweetButton_js__["a" /* default */](),
-        randomBtn = new __WEBPACK_IMPORTED_MODULE_4__Card_RandomButton_js__["a" /* default */](),
-        quoteRepository = new __WEBPACK_IMPORTED_MODULE_5__QuoteRepository_js__["a" /* default */](),
+        svgQuote = new __WEBPACK_IMPORTED_MODULE_1__Elements_SvgQuote_js__["a" /* default */](),
+        quoteText = new __WEBPACK_IMPORTED_MODULE_2__Elements_QuoteText_js__["a" /* default */](),
+        quoteCitation = new __WEBPACK_IMPORTED_MODULE_5__Elements_QuoteCitation_js__["a" /* default */](),
+        tweetBtn = new __WEBPACK_IMPORTED_MODULE_3__Elements_TweetButton_js__["a" /* default */](),
+        randomBtn = new __WEBPACK_IMPORTED_MODULE_4__Elements_RandomButton_js__["a" /* default */](),
+        quoteRepo = new __WEBPACK_IMPORTED_MODULE_6__Repository_QuoteRepository_js__["a" /* default */](),
         animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a
     ) {
         console.log(`${performance.now() - APP_START}: Card@constructor()`);//
@@ -295,7 +295,7 @@ class Card {
         this.quoteCitation = quoteCitation;
         this.tweetBtn = tweetBtn;
         this.randomBtn = randomBtn;
-        this.quoteRepo = quoteRepository;
+        this.quoteRepo = quoteRepo;
         this.animation = animation;
     }
 
@@ -311,15 +311,18 @@ class Card {
         this.quoteCitation.runPreLoadActions();
         this.tweetBtn.runPreLoadActions();
         this.randomBtn.runPreLoadActions();
+        this.quoteRepo.runPreLoadActions();
     }
 
     /*
     * Run animation for intro.
+    *
+    * @return {Object} Animejs instance.
     */
     animateIntro() {
         console.log(`${performance.now() - APP_START}: Card@animateIntro()`);//
 
-        this.animation.timeline()
+        return this.animation.timeline()
             .add(this.introAnimationSettings())
             .add(this.svgQuote.introAnimationSettings())
             .add(this.quoteText.introAnimationSettings())
@@ -362,16 +365,25 @@ class Card {
         console.log(`${performance.now() - APP_START}: Card@random()`);//
 
         event.preventDefault();
-        this.animateOutro().finished.then(() => this.createNew());
+        this.disableButtons();
+        this.animateOutro().finished.then(() => this.showNew());
     }
 
     /*
-    * Run card outro animation.
+    * Disable buttons.
+    */
+    disableButtons() {
+        this.randomBtn.disable();
+        this.tweetBtn.disable();
+    }
+
+    /*
+    * Run card outro animation.gasul cebu lahug nivel hills
     *
     * @return {Object} Animejs instance.
     */
     animateOutro() {
-        console.log(`${performance.now() - APP_START}: Card animateOutro()`);//
+        console.log(`${performance.now() - APP_START}: Card@animateOutro()`);//
 
         return this.animation.timeline()
             .add(this.randomBtn.outroAnimationSettings())
@@ -388,24 +400,55 @@ class Card {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card cardOutroAnimationSettings()`);//
+        console.log(`${performance.now() - APP_START}: Card@outroAnimationSettings()`);//
 
         return {
             targets: this.el,
-            opacity: [ {  value: 0, easing: 'easeOutSine' } ],
+            opacity: [ { value: 0, easing: 'easeOutSine' } ],
             duration: 500,
             offset: '-=200',
         };
     }
 
     /*
-    * Create new card with new quote content.
+    * Show new card with new quote content.
     */
-    createNew() {
-        console.log(`${performance.now() - APP_START}: Card createNew()`);//
+    showNew() {
+        console.log(`${performance.now() - APP_START}: Card@showNew()`);//
 
-        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../dist/images/captjacksparrow-m.jpg')`;
-        this.el.style.opacity = 1;
+        this.setContent(this.quoteRepo.getRandom());
+        this.animateIntro().finished.then(() => this.enableButtons());
+    }
+
+    /*
+    * Enable buttons.
+    */
+    enableButtons() {
+        this.randomBtn.enable();
+        this.tweetBtn.enable();
+    }
+
+    /*
+    * Set card's content with quote.
+    *
+    * @param {Object} quote - Quote model instance.
+    */
+    setContent(quote) {
+        console.log(`${performance.now() - APP_START}: Card@setContent()`);//
+        this.setBackgroundImage(quote.image);
+        this.quoteText.setContent(quote.text);
+        this.quoteCitation.setContent(quote.author);
+    }
+
+    /*
+    * Set card's background with image.
+    *
+    * @param {string} image - Image filename with extension.
+    */
+    setBackgroundImage(image) {
+        console.log(`${performance.now() - APP_START}: Card@setBackgroundImage()`);//
+
+        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('../dist/images/${image}')`;
     }
 }
 
@@ -414,88 +457,6 @@ class Card {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class QuoteRepository {
-    constructor() {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@constructor`);//
-
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (QuoteRepository);
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
-
-
-/*
-* Represents the credits element of the app.
-*
-* @author Jim Merioles <jimwisleymerioles@gmail.com>
-*/
-class Credits {
-
-    /*
-    * Create Credits instance.
-    *
-    * @param {Object} el - Credits' element.
-    * @param {Object} animation - Animejs instance.
-    */
-    constructor(el = document.getElementById('credits'), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
-        console.log(`${performance.now() - APP_START}: Credits@constructor()`);//
-
-        this.el = el;
-        this.animation = animation;
-    }
-
-    /*
-    * Run actions before load.
-    */
-    runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: Credits@runPreLoadActions()`);//
-
-        this.el.style.opacity = 0;
-    }
-
-    /*
-    * Run animation for intro.
-    */
-    animateIntro() {
-        console.log(`${performance.now() - APP_START}: Credits@creditsIntro()`);//
-
-        this.animation.timeline().add(this.introAnimationSettings());
-    }
-
-    /*
-    * Get animation settings for intro.
-    *
-    * @return {Object} The animations settings.
-    */
-    introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Credits@introAnimationSettings()`);//
-
-        return {
-            targets: this.el,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            duration: 250,
-            offset: 850
-        };
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Credits);
-
-
-/***/ }),
-/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -565,7 +526,7 @@ class SvgQuote {
 
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -627,9 +588,193 @@ class QuoteText {
             offset: 0
         };
     }
+
+    /*
+    * Set new quote.
+    *
+    * @param {string} The new quote.
+    */
+    setContent(text) {
+        console.log(`${performance.now() - APP_START}: QuoteText@setContent()`);//
+
+        this.el.firstElementChild.innerHTML = text;
+    }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (QuoteText);
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the tweet button element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class TweetButton {
+    /*
+    * Create TweetButton instance.
+    *
+    * @param {Object} el - TweetButton's element.
+    */
+    constructor(el = document.getElementById('buttons__svg-tweet')) {
+        console.log(`${performance.now() - APP_START}: TweetButton@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: TweetButton@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: TweetButton@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
+            duration: 350,
+            offset: 300
+        };
+    }
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: TweetButton@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeInSine' } ],
+            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
+            duration: 350,
+            offset: '-=200'
+        };
+    }
+
+    /*
+    * Disable button.
+    */
+    disable() {
+        console.log(`${performance.now() - APP_START}: TweetButton@disable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'none';
+    }
+
+    /*
+    * Enable button.
+    */
+    enable() {
+        console.log(`${performance.now() - APP_START}: TweetButton@enable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'auto';
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (TweetButton);
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Represents the random button element of the app.
+*
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class RandomButton {
+    /*
+    * Create RandonButton instance.
+    *
+    * @param {Object} el - RandomButton's element.
+    */
+    constructor(el = document.getElementById('buttons__svg-random')) {
+        console.log(`${performance.now() - APP_START}: RandomButton@constructor()`);//
+
+        this.el = el;
+    }
+
+    /*
+    * Run actions before load.
+    */
+    runPreLoadActions() {
+        console.log(`${performance.now() - APP_START}: RandomButton@runPreLoadActions()`);//
+
+        this.el.style.opacity = 0;
+    }
+
+    /*
+    * Get animation settings for intro.
+    *
+    * @return {Object} The animation settings.
+    */
+    introAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: RandomButton@introAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 1, easing: 'easeInSine' } ],
+            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
+            duration: 350,
+            offset: 400
+        };
+    }
+
+    /*
+    * Get animation settings for outro.
+    *
+    * @return {Object} The animation settings.
+    */
+    outroAnimationSettings() {
+        console.log(`${performance.now() - APP_START}: RandomButton@outroAnimationSettings()`);//
+
+        return {
+            targets: this.el,
+            opacity: [ {  value: 0, easing: 'easeInSine' } ],
+            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
+            duration: 350
+        };
+    }
+
+    /*
+    * Disable button.
+    */
+    disable() {
+        console.log(`${performance.now() - APP_START}: RandomButton@disable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'none';
+    }
+
+    /*
+    * Enable button.
+    */
+    enable() {
+        console.log(`${performance.now() - APP_START}: RandomButton@enable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'auto';
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (RandomButton);
 
 
 /***/ }),
@@ -696,6 +841,17 @@ class QuoteCitation {
             offset: 0
         };
     }
+
+    /*
+    * Set new citation.
+    *
+    * @param {string} The new author.
+    */
+    setContent(citation) {
+        console.log(`${performance.now() - APP_START}: QuoteCitation@setContent()`);//
+
+        this.el.firstElementChild.firstElementChild.innerHTML = citation;
+    }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (QuoteCitation);
@@ -706,68 +862,64 @@ class QuoteCitation {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Parser_QuotesParser_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Provider_QuotesProvider_js__ = __webpack_require__(12);
+
+
+
 /*
-* Represents the tweet button element of the app.
-*
+* Retrieves quotes from source.
+. *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
-class TweetButton {
+class QuoteRepository {
     /*
-    * Create TweetButton instance.
+    * Create QuoteRepository instance.
     *
-    * @param {Object} el - TweetButton's element.
+    * @param {Object} parser - QuotesParser instance.
+    * @param {Object} quoteProvider - QuotesProvider instance.
     */
-    constructor(el = document.getElementById('buttons__svg-tweet')) {
-        console.log(`${performance.now() - APP_START}: TweetButton@constructor()`);//
+    constructor(parser = new __WEBPACK_IMPORTED_MODULE_0__Parser_QuotesParser_js__["a" /* default */](), quotesProvider = new __WEBPACK_IMPORTED_MODULE_1__Provider_QuotesProvider_js__["a" /* default */]()) {
+        console.log(`${performance.now() - APP_START}: QuoteRepository@constructor()`);//
 
-        this.el = el;
+        this.parser = parser;
+        this.quotesProvider = quotesProvider;
     }
 
     /*
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: TweetButton@runPreLoadActions()`);//
+        console.log(`${performance.now() - APP_START}: QuoteRepository@runPreLoadActions()`);//
 
-        this.el.style.opacity = 0;
+        if(!sessionStorage.getItem('jsonQuotes')) {
+            this.quotesProvider.fetchQuotes().then(json => sessionStorage.setItem('jsonQuotes', JSON.stringify(json)));
+        }
     }
 
     /*
-    * Get animation settings for intro.
+    * Get a random quote.
     *
-    * @return {Object} The animation settings.
+    * @return {Object} Quote model instance.
     */
-    introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: TweetButton@introAnimationSettings()`);//
+    getRandom() {
+        console.log(`${performance.now() - APP_START}: QuoteRepository@getRandom()`);//
 
-        return {
-            targets: this.el,
-            opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
-            duration: 350,
-            offset: 300
-        };
+        let jsonQuotes = JSON.parse(sessionStorage.getItem('jsonQuotes'));
+        let quotes = this.parser.toQuotesArray(jsonQuotes);
+
+        return quotes[this.randomNumber(quotes.length - 1)];
     }
 
-    /*
-    * Get animation settings for outro.
-    *
-    * @return {Object} The animation settings.
-    */
-    outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: TweetButton@outroAnimationSettings()`);//
+    randomNumber(max) {
+        console.log(`${performance.now() - APP_START}: QuoteRepository@randomNumber()`);//
 
-        return {
-            targets: this.el,
-            opacity: [ {  value: 0, easing: 'easeInSine' } ],
-            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
-            duration: 350,
-            offset: '-=200'
-        };
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - 0 + 1)) + 0;
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (TweetButton);
+/* harmony default export */ __webpack_exports__["a"] = (QuoteRepository);
 
 
 /***/ }),
@@ -776,66 +928,223 @@ class TweetButton {
 
 "use strict";
 /*
-* Represents the random button element of the app.
+* Represents the quote model of the app.
+. *
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class Quote {
+
+    /*
+    * Create Quote instance.
+    *
+    * @param {string} text - Text of the quote.
+    * @param {string} author - Author of the quote.
+    * @param {string} image - Image of the quote.
+    */
+    constructor(text = undefined, author = undefined, image = undefined) {
+        console.log(`${performance.now() - APP_START}: Quote@constructor()`);//
+
+        this.text = text;
+        this.author = author;
+        this.image = image;
+    }
+
+    /*
+    * Create Quote with given attributes.
+    *
+    * @param {array} attributes - Attributes of the quote.
+    */
+    create(attributes) {
+        console.log(`${performance.now() - APP_START}: Quote@create()`);//
+
+        this.text = attributes['text'];
+        this.author = attributes['author'];
+        this.image = attributes['image'];
+
+        return this;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Quote);
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+* Provides quotes from Random Stoic Quotes API endpoint.
+. *
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class QuotesProvider {
+    /*
+    * Fetches quotes from an API endpoint.
+    *
+    * @return {strin|json} Quotes JSON string.
+    */
+    async fetchQuotes() {
+        console.log(`${performance.now() - APP_START}: QuotesProvider@fetchQuotes()`);//
+
+        let response = `{"error":"Something something went wrong."}`;
+
+        try {
+            response = await fetch(this.endpoint()).then((resp) => resp.json()).then((json) => json);
+        } catch (e) {
+            console.log(e);
+        }
+
+        console.log(response);
+        return response;
+    }
+
+    /*
+    * Get Quotes API endpoint.
+    *
+    * @return {string} Quotes API endpoint.
+    */
+    endpoint() {
+        console.log(`${performance.now() - APP_START}: QuotesProvider@endpoint()`);//
+
+        return `https://randomstoicquotesapi.herokuapp.com/api/v1/quotes`;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (QuotesProvider);
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
+
+
+/*
+* Represents the credits element of the app.
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
-class RandomButton {
+class Credits {
+
     /*
-    * Create RandonButton instance.
+    * Create Credits instance.
     *
-    * @param {Object} el - RandomButton's element.
+    * @param {Object} el - Credits' element.
+    * @param {Object} animation - Animejs instance.
     */
-    constructor(el = document.getElementById('buttons__svg-random')) {
-        console.log(`${performance.now() - APP_START}: RandomButton@constructor()`);//
+    constructor(el = document.getElementById('credits'), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
+        console.log(`${performance.now() - APP_START}: Credits@constructor()`);//
 
         this.el = el;
+        this.animation = animation;
     }
 
     /*
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: RandomButton@runPreLoadActions()`);//
+        console.log(`${performance.now() - APP_START}: Credits@runPreLoadActions()`);//
 
         this.el.style.opacity = 0;
     }
 
     /*
+    * Run animation for intro.
+    */
+    animateIntro() {
+        console.log(`${performance.now() - APP_START}: Credits@creditsIntro()`);//
+
+        this.animation.timeline().add(this.introAnimationSettings());
+    }
+
+    /*
     * Get animation settings for intro.
     *
-    * @return {Object} The animation settings.
+    * @return {Object} The animations settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomButton@introAnimationSettings()`);//
+        console.log(`${performance.now() - APP_START}: Credits@introAnimationSettings()`);//
 
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
-            translateY: [ { value: [30, 0], easing: 'easeOutSine' } ],
-            duration: 350,
-            offset: 400
-        };
-    }
-
-    /*
-    * Get animation settings for outro.
-    *
-    * @return {Object} The animation settings.
-    */
-    outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomButton@outroAnimationSettings()`);//
-
-        return {
-            targets: this.el,
-            opacity: [ {  value: 0, easing: 'easeInSine' } ],
-            translateY: [ { value: [0, 30], easing: 'easeInSine' } ],
-            duration: 350
+            duration: 250,
+            offset: 850
         };
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (RandomButton);
+/* harmony default export */ __webpack_exports__["a"] = (Credits);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Quote_js__ = __webpack_require__(11);
+
+
+/*
+* Parses JSON API v1 compliant data.
+. *
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class QuotesParser {
+
+    /*
+    * Create QuotesParser instance;
+    *
+    * @param {Object} quote - Quote model instance.
+    */
+    constructor(quote = new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */]()) {
+        console.log(`${performance.now() - APP_START}: QuotesParser@constructor()`);//
+
+        this.quote = quote;
+    }
+
+    /*
+    * Parses json data to array of quotes model.
+    *
+    * @param {json|string} json - JSON data from endpoint.
+    * @return {array} Array of quotes model.
+    */
+    toQuotesArray(json) {
+        console.log(`${performance.now() - APP_START}: QuotesParser@toQuotesArray()`);//
+
+        let quotesArray = [];
+        let quotes = json.data;
+        let authors = json.included.filter((each) => each.type == 'author');
+
+        for(let quote of quotes) {
+            let author = this.findAuthorOf(quote, authors);
+            quotesArray.push(new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */](quote.attributes.text, author.attributes.name, author.attributes.image));
+        }
+
+        return quotesArray;
+    }
+
+    /*
+    * Find author of quote.
+    *
+    * @param {Object|json} quote - Quote looking for author.
+    * @param {array|json} authors - List of authors.
+    * @return {Object|json} The author.
+    */
+    findAuthorOf(quote, authors) {
+        console.log(`${performance.now() - APP_START}: QuotesParser@findAuthorOf()`);//
+
+        let author = authors.filter(each => each.id === quote.relationships.author.data.id);
+
+        return author[0];
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (QuotesParser);
 
 
 /***/ })

@@ -9,7 +9,7 @@
 window.APP_START = performance.now();//
 console.log(`${window.APP_START}: app.js start`)//
 
-import RandomStoicQuotes from './RandomStoicQuotes.js';
+import RandomStoicQuotes from './App/RandomStoicQuotes.js';
 
 let app = new RandomStoicQuotes();
 

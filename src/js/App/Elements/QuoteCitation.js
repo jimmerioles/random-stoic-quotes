@@ -57,6 +57,17 @@ class QuoteCitation {
             offset: 0
         };
     }
+
+    /*
+    * Set new citation.
+    *
+    * @param {string} The new author.
+    */
+    setContent(citation) {
+        console.log(`${performance.now() - APP_START}: QuoteCitation@setContent()`);//
+
+        this.el.firstElementChild.firstElementChild.innerHTML = citation;
+    }
 }
 
 export default QuoteCitation;

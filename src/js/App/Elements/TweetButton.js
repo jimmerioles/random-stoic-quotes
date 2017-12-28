@@ -57,6 +57,24 @@ class TweetButton {
             offset: '-=200'
         };
     }
+
+    /*
+    * Disable button.
+    */
+    disable() {
+        console.log(`${performance.now() - APP_START}: TweetButton@disable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'none';
+    }
+
+    /*
+    * Enable button.
+    */
+    enable() {
+        console.log(`${performance.now() - APP_START}: TweetButton@enable()`);//
+
+        this.el.parentNode.style.pointerEvents = 'auto';
+    }
 }
 
 export default TweetButton;
