@@ -187,6 +187,7 @@ class Card {
         this.setBackgroundImage(quote.image);
         this.quoteText.setContent(quote.text);
         this.quoteCitation.setContent(quote.author);
+        this.tweetBtn.setIntent(quote);
     }
 
     /*

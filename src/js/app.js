@@ -7,7 +7,7 @@
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
 window.APP_START = performance.now();//
-console.log(`${window.APP_START}: app.js start`)//
+console.log(`${APP_START}: app.js start`)//
 
 import RandomStoicQuotes from './App/RandomStoicQuotes.js';
 

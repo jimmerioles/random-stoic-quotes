@@ -8,7 +8,7 @@ import Quote from '../Quote.js'
 class QuotesParser {
 
     /*
-    * Create QuotesParser instance;
+    * Create QuotesParser instance.
     *
     * @param {Object} quote - Quote model instance.
     */

@@ -121,7 +121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
 window.APP_START = performance.now();//
-console.log(`${window.APP_START}: app.js start`)//
+console.log(`${APP_START}: app.js start`)//
 
 
 
@@ -138,7 +138,7 @@ app.inspire();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_animejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_animejs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Card_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Elements_Credits_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Elements_Credits_js__ = __webpack_require__(14);
 
 
 
@@ -438,6 +438,7 @@ class Card {
         this.setBackgroundImage(quote.image);
         this.quoteText.setContent(quote.text);
         this.quoteCitation.setContent(quote.author);
+        this.tweetBtn.setIntent(quote);
     }
 
     /*
@@ -686,6 +687,24 @@ class TweetButton {
 
         this.el.parentNode.style.pointerEvents = 'auto';
     }
+
+    /*
+    * Set tweet intent.
+    *
+    * @param {Object} quote - Quote model instance.
+    */
+    setIntent(quote) {
+        console.log(`${performance.now() - APP_START}: TweetButton@setIntent()`);//
+
+        let text = encodeURIComponent(`"${quote.text}" —${quote.author}`);
+        let url = encodeURIComponent('https://jimmerioles.github.io/random-stoic-quotes');
+        let hashtags = 'Stoicism,Stoic,Quotes';
+        let related = encodeURIComponent('jimmerioles,Created RandomStoicQuotes and RandomStoicQuotesAPI.');
+
+        console.log(related);
+
+        this.el.parentNode.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&related=${related}`;
+    }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (TweetButton);
@@ -862,8 +881,8 @@ class QuoteCitation {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Parser_QuotesParser_js__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Provider_QuotesProvider_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Parser_QuotesParser_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Provider_QuotesProvider_js__ = __webpack_require__(13);
 
 
 
@@ -927,6 +946,72 @@ class QuoteRepository {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Quote_js__ = __webpack_require__(12);
+
+
+/*
+* Parses JSON API v1 compliant data.
+. *
+* @author Jim Merioles <jimwisleymerioles@gmail.com>
+*/
+class QuotesParser {
+
+    /*
+    * Create QuotesParser instance.
+    *
+    * @param {Object} quote - Quote model instance.
+    */
+    constructor(quote = new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */]()) {
+        console.log(`${performance.now() - APP_START}: QuotesParser@constructor()`);//
+
+        this.quote = quote;
+    }
+
+    /*
+    * Parses json data to array of quotes model.
+    *
+    * @param {json|string} json - JSON data from endpoint.
+    * @return {array} Array of quotes model.
+    */
+    toQuotesArray(json) {
+        console.log(`${performance.now() - APP_START}: QuotesParser@toQuotesArray()`);//
+
+        let quotesArray = [];
+        let quotes = json.data;
+        let authors = json.included.filter((each) => each.type == 'author');
+
+        for(let quote of quotes) {
+            let author = this.findAuthorOf(quote, authors);
+            quotesArray.push(new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */](quote.attributes.text, author.attributes.name, author.attributes.image));
+        }
+
+        return quotesArray;
+    }
+
+    /*
+    * Find author of quote.
+    *
+    * @param {Object|json} quote - Quote looking for author.
+    * @param {array|json} authors - List of authors.
+    * @return {Object|json} The author.
+    */
+    findAuthorOf(quote, authors) {
+        console.log(`${performance.now() - APP_START}: QuotesParser@findAuthorOf()`);//
+
+        let author = authors.filter(each => each.id === quote.relationships.author.data.id);
+
+        return author[0];
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (QuotesParser);
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /*
 * Represents the quote model of the app.
 . *
@@ -969,7 +1054,7 @@ class Quote {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -995,12 +1080,11 @@ class QuotesProvider {
             console.log(e);
         }
 
-        console.log(response);
         return response;
     }
 
     /*
-    * Get Quotes API endpoint.
+    * Get Random Stoic Quotes API endpoint.
     *
     * @return {string} Quotes API endpoint.
     */
@@ -1015,7 +1099,7 @@ class QuotesProvider {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1079,72 +1163,6 @@ class Credits {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Credits);
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Quote_js__ = __webpack_require__(11);
-
-
-/*
-* Parses JSON API v1 compliant data.
-. *
-* @author Jim Merioles <jimwisleymerioles@gmail.com>
-*/
-class QuotesParser {
-
-    /*
-    * Create QuotesParser instance;
-    *
-    * @param {Object} quote - Quote model instance.
-    */
-    constructor(quote = new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */]()) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@constructor()`);//
-
-        this.quote = quote;
-    }
-
-    /*
-    * Parses json data to array of quotes model.
-    *
-    * @param {json|string} json - JSON data from endpoint.
-    * @return {array} Array of quotes model.
-    */
-    toQuotesArray(json) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@toQuotesArray()`);//
-
-        let quotesArray = [];
-        let quotes = json.data;
-        let authors = json.included.filter((each) => each.type == 'author');
-
-        for(let quote of quotes) {
-            let author = this.findAuthorOf(quote, authors);
-            quotesArray.push(new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */](quote.attributes.text, author.attributes.name, author.attributes.image));
-        }
-
-        return quotesArray;
-    }
-
-    /*
-    * Find author of quote.
-    *
-    * @param {Object|json} quote - Quote looking for author.
-    * @param {array|json} authors - List of authors.
-    * @return {Object|json} The author.
-    */
-    findAuthorOf(quote, authors) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@findAuthorOf()`);//
-
-        let author = authors.filter(each => each.id === quote.relationships.author.data.id);
-
-        return author[0];
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (QuotesParser);
 
 
 /***/ })
