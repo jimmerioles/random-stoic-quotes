@@ -198,7 +198,7 @@ class Card {
     setBackgroundImage(image) {
         console.log(`${performance.now() - APP_START}: Card@setBackgroundImage()`);//
 
-        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('/dist/images/${image}')`;
+        this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('https://jimmerioles.github.io/random-stoic-quotes/dist/images/${image}')`;
     }
 }
 
