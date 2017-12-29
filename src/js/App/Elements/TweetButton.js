@@ -89,8 +89,6 @@ class TweetButton {
         let hashtags = 'Stoicism,Stoic,Quotes';
         let related = encodeURIComponent('jimmerioles,Created RandomStoicQuotes and RandomStoicQuotesAPI.');
 
-        console.log(related);
-
         this.el.parentNode.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&related=${related}`;
     }
 }
