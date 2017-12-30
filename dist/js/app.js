@@ -116,13 +116,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 * Entry point for Random Stoic Quotes Generator app. Consumes quotes from
 * Random Stoic Quotes API <https://randomstoicquotesapi.herokuapp.com>.
 *
-* Thank you for checking out the source! :) #ImAvailableForHire!
+* Thank you for checking out the source! :) #AvailableForHire!
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
-window.APP_START = performance.now();//
-console.log(`${APP_START}: app.js start`)//
-
 
 
 let app = new __WEBPACK_IMPORTED_MODULE_0__App_RandomStoicQuotes_js__["a" /* default */]();
@@ -158,8 +155,6 @@ class RandomStoicQuotes {
     * @param {Object} animation - Animejs instance.
     */
     constructor(card = new __WEBPACK_IMPORTED_MODULE_1__Card_js__["a" /* default */](), credits = new __WEBPACK_IMPORTED_MODULE_2__Elements_Credits_js__["a" /* default */](), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@constructor()`);//
-
         this.card = card;
         this.credits = credits;
         this.animation = animation;
@@ -169,8 +164,6 @@ class RandomStoicQuotes {
     * Initialize app.
     */
     inspire() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@inspire()`);//
-
         this.runPreLoadActions();
         this.registerEventListeners();
     }
@@ -179,8 +172,6 @@ class RandomStoicQuotes {
     * Run actions before app onload.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@runPreloadActions()`);//
-
         this.card.runPreLoadActions();
         this.credits.runPreLoadActions();
     }
@@ -189,8 +180,6 @@ class RandomStoicQuotes {
     * Register event listeners for app.
     */
     registerEventListeners() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@registerEventListeners()`);//
-
         window.addEventListener('load', () => this.animateIntro());
         this.card.registerEventListeners();
     }
@@ -199,9 +188,7 @@ class RandomStoicQuotes {
     * Run animation for app intro.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@animateIntro()`);//
-
-        this.card.animateIntro(); //TODO: try to make this into `this.card.intro().finished.then(this.copyrightIntro())`;
+        this.card.animateIntro();
         this.credits.animateIntro();
     }
 }
@@ -273,8 +260,7 @@ class Card {
     * @param {Object} quoteCitation - QuoteCitation instance.
     * @param {Object} tweetBtn - TweetButton instance.
     * @param {Object} randomBtn - RandomButton instance.
-    *
-    * @param {Object} quoteRepository - QuoteRepository instance.
+    * @param {Object} quoteRepo - QuoteRepository instance.
     * @param {Object} animation - Animejs instance.
     */
     constructor(
@@ -287,8 +273,6 @@ class Card {
         quoteRepo = new __WEBPACK_IMPORTED_MODULE_6__Repository_QuoteRepository_js__["a" /* default */](),
         animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a
     ) {
-        console.log(`${performance.now() - APP_START}: Card@constructor()`);//
-
         this.el = el;
         this.svgQuote = svgQuote;
         this.quoteText = quoteText;
@@ -303,8 +287,6 @@ class Card {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: Card@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
         this.svgQuote.runPreLoadActions();
         this.quoteText.runPreLoadActions();
@@ -320,8 +302,6 @@ class Card {
     * @return {Object} Animejs instance.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: Card@animateIntro()`);//
-
         return this.animation.timeline()
             .add(this.introAnimationSettings())
             .add(this.svgQuote.introAnimationSettings())
@@ -334,11 +314,9 @@ class Card {
     /*
     * Get animation settings for intro.
     *
-    * @return {Object} The animations settings.
+    * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: 1,
@@ -351,8 +329,6 @@ class Card {
     * Register event listeners.
     */
     registerEventListeners() {
-        console.log(`${performance.now() - APP_START}: Card@registerEventListeners()`);//
-
         this.randomBtn.el.parentNode.addEventListener('click', (event) => this.random(event));
     }
 
@@ -362,8 +338,6 @@ class Card {
     * @param {Object} event - Event object.
     */
     random(event) {
-        console.log(`${performance.now() - APP_START}: Card@random()`);//
-
         event.preventDefault();
         this.disableButtons();
         this.animateOutro().finished.then(() => this.showNew());
@@ -383,8 +357,6 @@ class Card {
     * @return {Object} Animejs instance.
     */
     animateOutro() {
-        console.log(`${performance.now() - APP_START}: Card@animateOutro()`);//
-
         return this.animation.timeline()
             .add(this.randomBtn.outroAnimationSettings())
             .add(this.tweetBtn.outroAnimationSettings())
@@ -400,8 +372,6 @@ class Card {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ { value: 0, easing: 'easeOutSine' } ],
@@ -414,8 +384,6 @@ class Card {
     * Show new card with new quote content.
     */
     showNew() {
-        console.log(`${performance.now() - APP_START}: Card@showNew()`);//
-
         this.setContent(this.quoteRepo.getRandom());
         this.animateIntro().finished.then(() => this.enableButtons());
     }
@@ -434,7 +402,6 @@ class Card {
     * @param {Object} quote - Quote model instance.
     */
     setContent(quote) {
-        console.log(`${performance.now() - APP_START}: Card@setContent()`);//
         this.setBackgroundImage(quote.image);
         this.quoteText.setContent(quote.text);
         this.quoteCitation.setContent(quote.author);
@@ -447,8 +414,6 @@ class Card {
     * @param {string} image - Image filename with extension.
     */
     setBackgroundImage(image) {
-        console.log(`${performance.now() - APP_START}: Card@setBackgroundImage()`);//
-
         this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('https://jimmerioles.github.io/random-stoic-quotes/dist/images/${image}')`;
     }
 }
@@ -474,8 +439,6 @@ class SvgQuote {
     * @param {Object} el - SvgQuote's element.
     */
     constructor(el = document.getElementById('svg-quote')) {
-        console.log(`${performance.now() - APP_START}: SvgQuote@constructor()`);//
-
         this.el = el;
     }
 
@@ -483,8 +446,6 @@ class SvgQuote {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: SvgQuote@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -494,8 +455,6 @@ class SvgQuote {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: SvgQuote@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -511,8 +470,6 @@ class SvgQuote {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: SvgQuote@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeInSine' } ],
@@ -543,8 +500,6 @@ class QuoteText {
     * @param {Object} el - QuoteText's element.
     */
     constructor(el = document.getElementById('quote__text')) {
-        console.log(`${performance.now() - APP_START}: QuoteText@constructor()`);//
-
         this.el = el;
     }
 
@@ -552,8 +507,6 @@ class QuoteText {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: QuoteText@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -563,8 +516,6 @@ class QuoteText {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteText@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -580,8 +531,6 @@ class QuoteText {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteText@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeOutSine' } ],
@@ -596,8 +545,6 @@ class QuoteText {
     * @param {string} The new quote.
     */
     setContent(text) {
-        console.log(`${performance.now() - APP_START}: QuoteText@setContent()`);//
-
         this.el.firstElementChild.innerHTML = text;
     }
 }
@@ -622,8 +569,6 @@ class TweetButton {
     * @param {Object} el - TweetButton's element.
     */
     constructor(el = document.getElementById('buttons__svg-tweet')) {
-        console.log(`${performance.now() - APP_START}: TweetButton@constructor()`);//
-
         this.el = el;
     }
 
@@ -631,8 +576,6 @@ class TweetButton {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: TweetButton@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -642,8 +585,6 @@ class TweetButton {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: TweetButton@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -659,8 +600,6 @@ class TweetButton {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: TweetButton@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeInSine' } ],
@@ -674,8 +613,6 @@ class TweetButton {
     * Disable button.
     */
     disable() {
-        console.log(`${performance.now() - APP_START}: TweetButton@disable()`);//
-
         this.el.parentNode.style.pointerEvents = 'none';
     }
 
@@ -683,8 +620,6 @@ class TweetButton {
     * Enable button.
     */
     enable() {
-        console.log(`${performance.now() - APP_START}: TweetButton@enable()`);//
-
         this.el.parentNode.style.pointerEvents = 'auto';
     }
 
@@ -694,8 +629,6 @@ class TweetButton {
     * @param {Object} quote - Quote model instance.
     */
     setIntent(quote) {
-        console.log(`${performance.now() - APP_START}: TweetButton@setIntent()`);//
-
         let text = encodeURIComponent(`"${quote.text}" —${quote.author}`);
         let url = encodeURIComponent('https://jimmerioles.github.io/random-stoic-quotes');
         let hashtags = 'Stoicism,Stoic,Quotes';
@@ -725,8 +658,6 @@ class RandomButton {
     * @param {Object} el - RandomButton's element.
     */
     constructor(el = document.getElementById('buttons__svg-random')) {
-        console.log(`${performance.now() - APP_START}: RandomButton@constructor()`);//
-
         this.el = el;
     }
 
@@ -734,8 +665,6 @@ class RandomButton {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: RandomButton@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -745,8 +674,6 @@ class RandomButton {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomButton@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -762,8 +689,6 @@ class RandomButton {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomButton@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeInSine' } ],
@@ -776,8 +701,6 @@ class RandomButton {
     * Disable button.
     */
     disable() {
-        console.log(`${performance.now() - APP_START}: RandomButton@disable()`);//
-
         this.el.parentNode.style.pointerEvents = 'none';
     }
 
@@ -785,8 +708,6 @@ class RandomButton {
     * Enable button.
     */
     enable() {
-        console.log(`${performance.now() - APP_START}: RandomButton@enable()`);//
-
         this.el.parentNode.style.pointerEvents = 'auto';
     }
 }
@@ -811,8 +732,6 @@ class QuoteCitation {
     * @param {Object} el - QuoteCitation's element.
     */
     constructor(el = document.getElementById('quote__citation')) {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@constructor()`);//
-
         this.el = el;
     }
 
@@ -820,8 +739,6 @@ class QuoteCitation {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -831,8 +748,6 @@ class QuoteCitation {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -848,8 +763,6 @@ class QuoteCitation {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeOutSine' } ],
@@ -865,8 +778,6 @@ class QuoteCitation {
     * @param {string} The new author.
     */
     setContent(citation) {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@setContent()`);//
-
         this.el.firstElementChild.firstElementChild.innerHTML = citation;
     }
 }
@@ -897,8 +808,6 @@ class QuoteRepository {
     * @param {Object} quoteProvider - QuotesProvider instance.
     */
     constructor(parser = new __WEBPACK_IMPORTED_MODULE_0__Parser_QuotesParser_js__["a" /* default */](), quotesProvider = new __WEBPACK_IMPORTED_MODULE_1__Provider_QuotesProvider_js__["a" /* default */]()) {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@constructor()`);//
-
         this.parser = parser;
         this.quotesProvider = quotesProvider;
     }
@@ -907,8 +816,6 @@ class QuoteRepository {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@runPreLoadActions()`);//
-
         if(!sessionStorage.getItem('jsonQuotes')) {
             this.quotesProvider.fetchQuotes().then(json => sessionStorage.setItem('jsonQuotes', JSON.stringify(json)));
         }
@@ -920,19 +827,19 @@ class QuoteRepository {
     * @return {Object} Quote model instance.
     */
     getRandom() {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@getRandom()`);//
-
         let jsonQuotes = JSON.parse(sessionStorage.getItem('jsonQuotes'));
         let quotes = this.parser.toQuotesArray(jsonQuotes);
 
         return quotes[this.randomNumber(quotes.length - 1)];
     }
 
+    /*
+    * Generate random number.
+    *
+    * @param {number} max - Random number limit.
+    */
     randomNumber(max) {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@randomNumber()`);//
-
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - 0 + 1)) + 0;
+        return Math.floor(Math.random() * (Math.floor(max) + 1));
     }
 }
 
@@ -960,8 +867,6 @@ class QuotesParser {
     * @param {Object} quote - Quote model instance.
     */
     constructor(quote = new __WEBPACK_IMPORTED_MODULE_0__Quote_js__["a" /* default */]()) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@constructor()`);//
-
         this.quote = quote;
     }
 
@@ -972,8 +877,6 @@ class QuotesParser {
     * @return {array} Array of quotes model.
     */
     toQuotesArray(json) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@toQuotesArray()`);//
-
         let quotesArray = [];
         let quotes = json.data;
         let authors = json.included.filter((each) => each.type == 'author');
@@ -994,8 +897,6 @@ class QuotesParser {
     * @return {Object|json} The author.
     */
     findAuthorOf(quote, authors) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@findAuthorOf()`);//
-
         let author = authors.filter(each => each.id === quote.relationships.author.data.id);
 
         return author[0];
@@ -1025,8 +926,6 @@ class Quote {
     * @param {string} image - Image of the quote.
     */
     constructor(text = undefined, author = undefined, image = undefined) {
-        console.log(`${performance.now() - APP_START}: Quote@constructor()`);//
-
         this.text = text;
         this.author = author;
         this.image = image;
@@ -1038,8 +937,6 @@ class Quote {
     * @param {array} attributes - Attributes of the quote.
     */
     create(attributes) {
-        console.log(`${performance.now() - APP_START}: Quote@create()`);//
-
         this.text = attributes['text'];
         this.author = attributes['author'];
         this.image = attributes['image'];
@@ -1068,8 +965,6 @@ class QuotesProvider {
     * @return {strin|json} Quotes JSON string.
     */
     async fetchQuotes() {
-        console.log(`${performance.now() - APP_START}: QuotesProvider@fetchQuotes()`);//
-
         let response = `{"error":"Something something went wrong."}`;
 
         try {
@@ -1087,8 +982,6 @@ class QuotesProvider {
     * @return {string} Quotes API endpoint.
     */
     endpoint() {
-        console.log(`${performance.now() - APP_START}: QuotesProvider@endpoint()`);//
-
         return `https://randomstoicquotesapi.herokuapp.com/api/v1/quotes`;
     }
 }
@@ -1119,8 +1012,6 @@ class Credits {
     * @param {Object} animation - Animejs instance.
     */
     constructor(el = document.getElementById('credits'), animation = __WEBPACK_IMPORTED_MODULE_0_animejs___default.a) {
-        console.log(`${performance.now() - APP_START}: Credits@constructor()`);//
-
         this.el = el;
         this.animation = animation;
     }
@@ -1129,8 +1020,6 @@ class Credits {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: Credits@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -1138,8 +1027,6 @@ class Credits {
     * Run animation for intro.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: Credits@creditsIntro()`);//
-
         this.animation.timeline().add(this.introAnimationSettings());
     }
 
@@ -1149,8 +1036,6 @@ class Credits {
     * @return {Object} The animations settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Credits@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
