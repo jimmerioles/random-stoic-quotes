@@ -72,8 +72,8 @@ class TweetButton {
     setIntent(quote) {
         let text = encodeURIComponent(`"${quote.text}" —${quote.author}`);
         let url = encodeURIComponent('https://jimmerioles.github.io/random-stoic-quotes');
-        let hashtags = 'Stoicism,Stoic,Quotes';
-        let related = encodeURIComponent('jimmerioles,Created RandomStoicQuotes and RandomStoicQuotesAPI.');
+        let hashtags = 'Stoicism,Stoic,Quotes,100DaysOfCode,freeCodeCamp';
+        let related = encodeURIComponent('jimmerioles,Created Random Stoic Quotes and Random Stoic Quotes API.');
 
         this.el.parentNode.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&related=${related}`;
     }
