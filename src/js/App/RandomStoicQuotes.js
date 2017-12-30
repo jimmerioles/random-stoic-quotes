@@ -50,7 +50,7 @@ class RandomStoicQuotes {
     * Run animation for app intro.
     */
     animateIntro() {
-        this.card.animateIntro(); //TODO: try to make this into `this.card.intro().finished.then(this.copyrightIntro())`;
+        this.card.animateIntro();
         this.credits.animateIntro();
     }
 }
