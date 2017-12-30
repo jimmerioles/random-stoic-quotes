@@ -13,8 +13,6 @@ class QuotesParser {
     * @param {Object} quote - Quote model instance.
     */
     constructor(quote = new Quote()) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@constructor()`);//
-
         this.quote = quote;
     }
 
@@ -25,8 +23,6 @@ class QuotesParser {
     * @return {array} Array of quotes model.
     */
     toQuotesArray(json) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@toQuotesArray()`);//
-
         let quotesArray = [];
         let quotes = json.data;
         let authors = json.included.filter((each) => each.type == 'author');
@@ -47,8 +43,6 @@ class QuotesParser {
     * @return {Object|json} The author.
     */
     findAuthorOf(quote, authors) {
-        console.log(`${performance.now() - APP_START}: QuotesParser@findAuthorOf()`);//
-
         let author = authors.filter(each => each.id === quote.relationships.author.data.id);
 
         return author[0];

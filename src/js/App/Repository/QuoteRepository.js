@@ -14,8 +14,6 @@ class QuoteRepository {
     * @param {Object} quoteProvider - QuotesProvider instance.
     */
     constructor(parser = new QuotesParser(), quotesProvider = new QuotesProvider()) {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@constructor()`);//
-
         this.parser = parser;
         this.quotesProvider = quotesProvider;
     }
@@ -24,8 +22,6 @@ class QuoteRepository {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@runPreLoadActions()`);//
-
         if(!sessionStorage.getItem('jsonQuotes')) {
             this.quotesProvider.fetchQuotes().then(json => sessionStorage.setItem('jsonQuotes', JSON.stringify(json)));
         }
@@ -37,8 +33,6 @@ class QuoteRepository {
     * @return {Object} Quote model instance.
     */
     getRandom() {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@getRandom()`);//
-
         let jsonQuotes = JSON.parse(sessionStorage.getItem('jsonQuotes'));
         let quotes = this.parser.toQuotesArray(jsonQuotes);
 
@@ -46,8 +40,6 @@ class QuoteRepository {
     }
 
     randomNumber(max) {
-        console.log(`${performance.now() - APP_START}: QuoteRepository@randomNumber()`);//
-
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - 0 + 1)) + 0;
     }

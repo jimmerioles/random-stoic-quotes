@@ -11,8 +11,6 @@ class SvgQuote {
     * @param {Object} el - SvgQuote's element.
     */
     constructor(el = document.getElementById('svg-quote')) {
-        console.log(`${performance.now() - APP_START}: SvgQuote@constructor()`);//
-
         this.el = el;
     }
 
@@ -20,8 +18,6 @@ class SvgQuote {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: SvgQuote@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -31,8 +27,6 @@ class SvgQuote {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: SvgQuote@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -48,8 +42,6 @@ class SvgQuote {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: SvgQuote@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeInSine' } ],

@@ -10,8 +10,6 @@ class TweetButton {
     * @param {Object} el - TweetButton's element.
     */
     constructor(el = document.getElementById('buttons__svg-tweet')) {
-        console.log(`${performance.now() - APP_START}: TweetButton@constructor()`);//
-
         this.el = el;
     }
 
@@ -19,8 +17,6 @@ class TweetButton {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: TweetButton@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -30,8 +26,6 @@ class TweetButton {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: TweetButton@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -47,8 +41,6 @@ class TweetButton {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: TweetButton@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeInSine' } ],
@@ -62,8 +54,6 @@ class TweetButton {
     * Disable button.
     */
     disable() {
-        console.log(`${performance.now() - APP_START}: TweetButton@disable()`);//
-
         this.el.parentNode.style.pointerEvents = 'none';
     }
 
@@ -71,8 +61,6 @@ class TweetButton {
     * Enable button.
     */
     enable() {
-        console.log(`${performance.now() - APP_START}: TweetButton@enable()`);//
-
         this.el.parentNode.style.pointerEvents = 'auto';
     }
 
@@ -82,8 +70,6 @@ class TweetButton {
     * @param {Object} quote - Quote model instance.
     */
     setIntent(quote) {
-        console.log(`${performance.now() - APP_START}: TweetButton@setIntent()`);//
-
         let text = encodeURIComponent(`"${quote.text}" —${quote.author}`);
         let url = encodeURIComponent('https://jimmerioles.github.io/random-stoic-quotes');
         let hashtags = 'Stoicism,Stoic,Quotes';

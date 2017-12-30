@@ -6,9 +6,6 @@
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
-window.APP_START = performance.now();//
-console.log(`${APP_START}: app.js start`)//
-
 import RandomStoicQuotes from './App/RandomStoicQuotes.js';
 
 let app = new RandomStoicQuotes();

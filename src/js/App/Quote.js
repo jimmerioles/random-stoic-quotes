@@ -13,8 +13,6 @@ class Quote {
     * @param {string} image - Image of the quote.
     */
     constructor(text = undefined, author = undefined, image = undefined) {
-        console.log(`${performance.now() - APP_START}: Quote@constructor()`);//
-
         this.text = text;
         this.author = author;
         this.image = image;
@@ -26,8 +24,6 @@ class Quote {
     * @param {array} attributes - Attributes of the quote.
     */
     create(attributes) {
-        console.log(`${performance.now() - APP_START}: Quote@create()`);//
-
         this.text = attributes['text'];
         this.author = attributes['author'];
         this.image = attributes['image'];

@@ -10,8 +10,6 @@ class QuoteCitation {
     * @param {Object} el - QuoteCitation's element.
     */
     constructor(el = document.getElementById('quote__citation')) {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@constructor()`);//
-
         this.el = el;
     }
 
@@ -19,8 +17,6 @@ class QuoteCitation {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -30,8 +26,6 @@ class QuoteCitation {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -47,8 +41,6 @@ class QuoteCitation {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeOutSine' } ],
@@ -64,8 +56,6 @@ class QuoteCitation {
     * @param {string} The new author.
     */
     setContent(citation) {
-        console.log(`${performance.now() - APP_START}: QuoteCitation@setContent()`);//
-
         this.el.firstElementChild.firstElementChild.innerHTML = citation;
     }
 }

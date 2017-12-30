@@ -17,8 +17,6 @@ class RandomStoicQuotes {
     * @param {Object} animation - Animejs instance.
     */
     constructor(card = new Card(), credits = new Credits(), animation = anime) {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@constructor()`);//
-
         this.card = card;
         this.credits = credits;
         this.animation = animation;
@@ -28,8 +26,6 @@ class RandomStoicQuotes {
     * Initialize app.
     */
     inspire() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@inspire()`);//
-
         this.runPreLoadActions();
         this.registerEventListeners();
     }
@@ -38,8 +34,6 @@ class RandomStoicQuotes {
     * Run actions before app onload.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@runPreloadActions()`);//
-
         this.card.runPreLoadActions();
         this.credits.runPreLoadActions();
     }
@@ -48,8 +42,6 @@ class RandomStoicQuotes {
     * Register event listeners for app.
     */
     registerEventListeners() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@registerEventListeners()`);//
-
         window.addEventListener('load', () => this.animateIntro());
         this.card.registerEventListeners();
     }
@@ -58,8 +50,6 @@ class RandomStoicQuotes {
     * Run animation for app intro.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: RandomStoicQuotes@animateIntro()`);//
-
         this.card.animateIntro(); //TODO: try to make this into `this.card.intro().finished.then(this.copyrightIntro())`;
         this.credits.animateIntro();
     }

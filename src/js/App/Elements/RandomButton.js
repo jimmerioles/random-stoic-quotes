@@ -10,8 +10,6 @@ class RandomButton {
     * @param {Object} el - RandomButton's element.
     */
     constructor(el = document.getElementById('buttons__svg-random')) {
-        console.log(`${performance.now() - APP_START}: RandomButton@constructor()`);//
-
         this.el = el;
     }
 
@@ -19,8 +17,6 @@ class RandomButton {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: RandomButton@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -30,8 +26,6 @@ class RandomButton {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomButton@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -47,8 +41,6 @@ class RandomButton {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: RandomButton@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeInSine' } ],
@@ -61,8 +53,6 @@ class RandomButton {
     * Disable button.
     */
     disable() {
-        console.log(`${performance.now() - APP_START}: RandomButton@disable()`);//
-
         this.el.parentNode.style.pointerEvents = 'none';
     }
 
@@ -70,8 +60,6 @@ class RandomButton {
     * Enable button.
     */
     enable() {
-        console.log(`${performance.now() - APP_START}: RandomButton@enable()`);//
-
         this.el.parentNode.style.pointerEvents = 'auto';
     }
 }

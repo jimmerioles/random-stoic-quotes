@@ -36,8 +36,6 @@ class Card {
         quoteRepo = new QuoteRepository(),
         animation = anime
     ) {
-        console.log(`${performance.now() - APP_START}: Card@constructor()`);//
-
         this.el = el;
         this.svgQuote = svgQuote;
         this.quoteText = quoteText;
@@ -52,8 +50,6 @@ class Card {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: Card@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
         this.svgQuote.runPreLoadActions();
         this.quoteText.runPreLoadActions();
@@ -69,8 +65,6 @@ class Card {
     * @return {Object} Animejs instance.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: Card@animateIntro()`);//
-
         return this.animation.timeline()
             .add(this.introAnimationSettings())
             .add(this.svgQuote.introAnimationSettings())
@@ -86,8 +80,6 @@ class Card {
     * @return {Object} The animations settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: 1,
@@ -100,8 +92,6 @@ class Card {
     * Register event listeners.
     */
     registerEventListeners() {
-        console.log(`${performance.now() - APP_START}: Card@registerEventListeners()`);//
-
         this.randomBtn.el.parentNode.addEventListener('click', (event) => this.random(event));
     }
 
@@ -111,8 +101,6 @@ class Card {
     * @param {Object} event - Event object.
     */
     random(event) {
-        console.log(`${performance.now() - APP_START}: Card@random()`);//
-
         event.preventDefault();
         this.disableButtons();
         this.animateOutro().finished.then(() => this.showNew());
@@ -132,8 +120,6 @@ class Card {
     * @return {Object} Animejs instance.
     */
     animateOutro() {
-        console.log(`${performance.now() - APP_START}: Card@animateOutro()`);//
-
         return this.animation.timeline()
             .add(this.randomBtn.outroAnimationSettings())
             .add(this.tweetBtn.outroAnimationSettings())
@@ -149,8 +135,6 @@ class Card {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Card@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ { value: 0, easing: 'easeOutSine' } ],
@@ -163,8 +147,6 @@ class Card {
     * Show new card with new quote content.
     */
     showNew() {
-        console.log(`${performance.now() - APP_START}: Card@showNew()`);//
-
         this.setContent(this.quoteRepo.getRandom());
         this.animateIntro().finished.then(() => this.enableButtons());
     }
@@ -183,7 +165,6 @@ class Card {
     * @param {Object} quote - Quote model instance.
     */
     setContent(quote) {
-        console.log(`${performance.now() - APP_START}: Card@setContent()`);//
         this.setBackgroundImage(quote.image);
         this.quoteText.setContent(quote.text);
         this.quoteCitation.setContent(quote.author);
@@ -196,8 +177,6 @@ class Card {
     * @param {string} image - Image filename with extension.
     */
     setBackgroundImage(image) {
-        console.log(`${performance.now() - APP_START}: Card@setBackgroundImage()`);//
-
         this.el.style.backgroundImage = `linear-gradient(rgba(43, 49, 52, 0.85), rgba(43, 49, 52, 0.85)), url('https://jimmerioles.github.io/random-stoic-quotes/dist/images/${image}')`;
     }
 }

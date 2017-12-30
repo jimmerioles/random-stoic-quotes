@@ -10,8 +10,6 @@ class QuoteText {
     * @param {Object} el - QuoteText's element.
     */
     constructor(el = document.getElementById('quote__text')) {
-        console.log(`${performance.now() - APP_START}: QuoteText@constructor()`);//
-
         this.el = el;
     }
 
@@ -19,8 +17,6 @@ class QuoteText {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: QuoteText@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -30,8 +26,6 @@ class QuoteText {
     * @return {Object} The animation settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteText@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
@@ -47,8 +41,6 @@ class QuoteText {
     * @return {Object} The animation settings.
     */
     outroAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: QuoteText@outroAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 0, easing: 'easeOutSine' } ],
@@ -63,8 +55,6 @@ class QuoteText {
     * @param {string} The new quote.
     */
     setContent(text) {
-        console.log(`${performance.now() - APP_START}: QuoteText@setContent()`);//
-
         this.el.firstElementChild.innerHTML = text;
     }
 }

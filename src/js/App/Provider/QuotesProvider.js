@@ -10,8 +10,6 @@ class QuotesProvider {
     * @return {strin|json} Quotes JSON string.
     */
     async fetchQuotes() {
-        console.log(`${performance.now() - APP_START}: QuotesProvider@fetchQuotes()`);//
-
         let response = `{"error":"Something something went wrong."}`;
 
         try {
@@ -29,8 +27,6 @@ class QuotesProvider {
     * @return {string} Quotes API endpoint.
     */
     endpoint() {
-        console.log(`${performance.now() - APP_START}: QuotesProvider@endpoint()`);//
-
         return `https://randomstoicquotesapi.herokuapp.com/api/v1/quotes`;
     }
 }

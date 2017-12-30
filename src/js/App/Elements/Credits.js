@@ -14,8 +14,6 @@ class Credits {
     * @param {Object} animation - Animejs instance.
     */
     constructor(el = document.getElementById('credits'), animation = anime) {
-        console.log(`${performance.now() - APP_START}: Credits@constructor()`);//
-
         this.el = el;
         this.animation = animation;
     }
@@ -24,8 +22,6 @@ class Credits {
     * Run actions before load.
     */
     runPreLoadActions() {
-        console.log(`${performance.now() - APP_START}: Credits@runPreLoadActions()`);//
-
         this.el.style.opacity = 0;
     }
 
@@ -33,8 +29,6 @@ class Credits {
     * Run animation for intro.
     */
     animateIntro() {
-        console.log(`${performance.now() - APP_START}: Credits@creditsIntro()`);//
-
         this.animation.timeline().add(this.introAnimationSettings());
     }
 
@@ -44,8 +38,6 @@ class Credits {
     * @return {Object} The animations settings.
     */
     introAnimationSettings() {
-        console.log(`${performance.now() - APP_START}: Credits@introAnimationSettings()`);//
-
         return {
             targets: this.el,
             opacity: [ {  value: 1, easing: 'easeInSine' } ],
