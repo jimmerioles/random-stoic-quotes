@@ -2,7 +2,7 @@
 * Entry point for Random Stoic Quotes Generator app. Consumes quotes from
 * Random Stoic Quotes API <https://randomstoicquotesapi.herokuapp.com>.
 *
-* Thank you for checking out the source! :) #ImAvailableForHire!
+* Thank you for checking out the source! :) #AvailableForHire!
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */

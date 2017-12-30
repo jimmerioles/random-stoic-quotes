@@ -39,9 +39,13 @@ class QuoteRepository {
         return quotes[this.randomNumber(quotes.length - 1)];
     }
 
+    /*
+    * Generate random number.
+    *
+    * @param {number} max - Random number limit.
+    */
     randomNumber(max) {
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - 0 + 1)) + 0;
+        return Math.floor(Math.random() * (Math.floor(max) + 1));
     }
 }
 

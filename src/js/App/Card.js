@@ -22,8 +22,7 @@ class Card {
     * @param {Object} quoteCitation - QuoteCitation instance.
     * @param {Object} tweetBtn - TweetButton instance.
     * @param {Object} randomBtn - RandomButton instance.
-    *
-    * @param {Object} quoteRepository - QuoteRepository instance.
+    * @param {Object} quoteRepo - QuoteRepository instance.
     * @param {Object} animation - Animejs instance.
     */
     constructor(
@@ -77,7 +76,7 @@ class Card {
     /*
     * Get animation settings for intro.
     *
-    * @return {Object} The animations settings.
+    * @return {Object} The animation settings.
     */
     introAnimationSettings() {
         return {
