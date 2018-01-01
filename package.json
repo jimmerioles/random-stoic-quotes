@@ -2,19 +2,16 @@
   "name": "random-quotes",
   "scripts": {
     "clean": "rm -f dist/css/* && rm -f dist/js/* && rm -f dist/images/*",
-    "autoprefixer-dev": "postcss src/css/* -u autoprefixer -d dist/css/",
-    "autoprefixer-prod": "postcss --map=false src/css/* -u autoprefixer -d dist/css/",
-    "cssnano-dev": "postcss dist/css/*.css -u cssnano -o dist/css/app.min.css",
-    "cssnano-prod": "postcss --map=false dist/css/*.css -u cssnano -o dist/css/app.min.css",
+    "autoprefixer": "postcss --map=false src/css/* -u autoprefixer -d dist/css/",
+    "cssnano": "postcss --map=false dist/css/app.css -u cssnano -o dist/css/app.min.css",
     "imagemin": "imagemin -p=mozjpeg src/images/*.jpg -o dist/images",
-    "prebuild-dev": "npm run clean",
-    "prebuild-prod": "npm run clean",
-    "watch": "webpack --watch --display-modules",
-    "build-dev:css": "rm -f dist/css/* && npm run autoprefixer-dev && npm run cssnano-dev",
-    "build-prod:css": "npm run autoprefixer-prod && npm run cssnano-prod",
-    "build-dev:js": "webpack",
-    "build-dev": "npm run build-dev:css && npm run build-dev:js && npm run imagemin",
-    "build-prod": "npm run build-prod:css && npm run build-dev:js && npm run imagemin"
+    "build-css:dev": "npm run autoprefixer",
+    "build-css:prod": "npm run autoprefixer && npm run cssnano && rm dist/css/app.css && rm dist/css/app.css.map",
+    "build-js:dev": "webpack --progress",
+    "build-js:prod": "NODE_ENV=production webpack --progress",
+    "build-dev": "npm run clean && npm run build-css:dev && npm run build-js:dev && npm run imagemin",
+    "build-prod": "npm run clean && npm run build-css:prod && npm run build-js:prod && npm run imagemin",
+    "watch": "webpack --watch --display-modules"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +22,7 @@
     "imagemin-cli": "^3.0.0",
     "imagemin-mozjpeg": "^6.0.0",
     "postcss-cli": "^4.1.1",
+    "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.8.1"
   },
   "dependencies": {
