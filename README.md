@@ -8,7 +8,7 @@ A Random Stoic Quotes generator that consumes [JSON API v1](http://jsonapi.org) 
 * Click to tweet
 
 ## Built With
-* Javascript (ECMAScript2015+)
+* Modern Javascript (ECMAScript2015+)
 
 ## Changelog
 
