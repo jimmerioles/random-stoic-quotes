@@ -1,11 +1,16 @@
+![jimmerioles github io_random-stoic-quotes_ 1](https://user-images.githubusercontent.com/9766310/36502074-c1c0cb1e-1783-11e8-9390-cdd33e5b9d23.png)
+
 # Random Stoic Quotes
 A Random Stoic Quotes generator that consumes [JSON API v1](http://jsonapi.org) compliant data from [Random Stoic Quotes API](https://randomstoicquotesapi.herokuapp.com).
 
-# Features
+## Features
 * Click to random
 * Click to tweet
 
-## Change log
+## Built With
+* Javascript (ECMAScript2015+)
+
+## Changelog
 
 Please see [CHANGELOG][link-changelog] for more information on what has changed recently.
 
