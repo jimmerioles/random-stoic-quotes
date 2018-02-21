@@ -14,8 +14,8 @@
     "watch": "webpack --watch --display-modules"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jim Merioles",
+  "license": "UNLICENSED",
   "devDependencies": {
     "autoprefixer": "^7.1.6",
     "cssnano": "^3.10.0",

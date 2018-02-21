@@ -3,7 +3,7 @@ import Card from './Card.js';
 import Credits from './Elements/Credits.js';
 
 /*
-* Represents the app .
+* Represents the app.
 *
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */

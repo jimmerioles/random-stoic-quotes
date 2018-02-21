@@ -6,10 +6,10 @@
 body {
     height: 100vh;
     min-width: 360px;
-    background-color: #2F373A;
+    background-color: #2F373A--;
     font-family: 'Quattrocento Sans', sans-serif;
     color: rgba(255, 255, 255, 0.95);
-    overflow: hidden;
+    overflow: hidden; /* TODO: investigate if needed. */
 
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@ a svg:hover path {
 .quote {
     display: flex;
     flex-flow: column;
-    width: 80%;
+    width: 80%;-
 }
 
 .quote__text {

@@ -4,6 +4,7 @@
 * @author Jim Merioles <jimwisleymerioles@gmail.com>
 */
 class QuotesProvider {
+
     /*
     * Fetches quotes from an API endpoint.
     *
