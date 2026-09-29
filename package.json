@@ -19,7 +19,7 @@
   "devDependencies": {
     "autoprefixer": "^10.6.1",
     "cssnano": "^9.1.1",
-    "imagemin-cli": "^3.0.0",
+    "imagemin-cli": "^8.0.0",
     "imagemin-mozjpeg": "^6.0.0",
     "postcss-cli": "^12.0.0",
     "uglifyjs-webpack-plugin": "^1.2.4",
