@@ -18,8 +18,8 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "autoprefixer": "^7.2.6",
-    "cssnano": "^3.10.0",
-    "imagemin-cli": "^3.0.0",
+    "cssnano": "^9.1.1",
+    "imagemin-cli": "^8.0.0",
     "imagemin-mozjpeg": "^6.0.0",
     "postcss-cli": "^4.1.1",
     "uglifyjs-webpack-plugin": "^1.2.4",
